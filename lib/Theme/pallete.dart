@@ -5,7 +5,7 @@ class Pallete {
   static const offWhiteColor = Color.fromRGBO(240, 240, 242, 1);
   static const blackColor = Color.fromRGBO(1, 1, 1, 1);
   static const blueColor = Color.fromRGBO(61, 92, 255, 1);
-  static const greyText = Color.fromRGBO(133, 133, 151, 1);
+  static const greyText = Colors.grey;
 
   // 133,133,151
 

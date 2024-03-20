@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-// import 'package:skillharvest/features/auth/screens/login_screen.dart';
+import 'package:skillharvest/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,21 +10,21 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   loadDelay();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    loadDelay();
+    super.initState();
+  }
 
-  // void loadDelay() {
-  //   Future.delayed(const Duration(seconds: 5), () {
-  //     Navigator.of(context).pushReplacement(
-  //       MaterialPageRoute(
-  //         builder: (context) => const LoginScreen(),
-  //       ),
-  //     );
-  //   });
-  // }
+  void loadDelay() {
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const Onboarding(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             Gap(20),
-            // CircularProgressIndicator()
+            CircularProgressIndicator()
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/features/auth/screens/login_screen.dart';
-// import 'package:skillharvest/splash_screen.dart';
+import 'package:skillharvest/features/auth/screens/signup.dart';
+import 'package:skillharvest/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SkillHarvest',
       theme: Pallete.lightThemeMode,
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
