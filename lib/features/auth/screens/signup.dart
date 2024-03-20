@@ -5,7 +5,7 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/signup_checkbox.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
-import 'package:skillharvest/onboarding.dart';
+import 'package:skillharvest/features/auth/screens/login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -80,7 +80,7 @@ class _SignupState extends State<Signup> {
                         ..onTap = () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const Onboarding(),
+                              builder: (context) => const Login(),
                             ),
                           );
                         },

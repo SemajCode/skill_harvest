@@ -14,6 +14,7 @@ class Pallete {
     primaryColor: blueColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: whiteColor,
+      foregroundColor: blackColor,
       elevation: 0,
     ),
     // elevatedButtonTheme: ElevatedButtonThemeData(
