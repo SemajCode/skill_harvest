@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 
-class SignUpButton extends StatelessWidget {
-  const SignUpButton({
+class PrimaryButton extends StatelessWidget {
+  final String text;
+  final Function() onTap;
+  const PrimaryButton({
     super.key,
+    required this.text,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         fixedSize: Size(MediaQuery.of(context).size.width, 54),
         backgroundColor: Pallete.blueColor,
@@ -18,9 +22,9 @@ class SignUpButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      child: const Text(
-        'Create account',
-        style: TextStyle(fontSize: 18),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18),
       ),
     );
   }

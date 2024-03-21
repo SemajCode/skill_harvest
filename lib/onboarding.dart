@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/constants/constant.dart';
+import 'package:skillharvest/features/auth/screens/login.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';
 
 class Onboarding extends StatelessWidget {
@@ -57,7 +58,13 @@ class Onboarding extends StatelessWidget {
                   child: const Text('Sign up'),
                 ),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
+                  },
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(150, 50),
                     backgroundColor: Pallete.whiteColor,

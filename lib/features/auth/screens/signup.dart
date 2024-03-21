@@ -6,6 +6,7 @@ import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/signup_checkbox.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/features/auth/screens/login.dart';
+import 'package:skillharvest/features/auth/screens/reg_success_modal.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -15,6 +16,13 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  void createAccount() {
+    showDialog(
+      context: context,
+      builder: (context) => const RegSuccesModal(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +62,10 @@ class _SignupState extends State<Signup> {
             const Gap(20),
             const PasswordTextField(),
             const Gap(20),
-            const SignUpButton(),
+            PrimaryButton(
+              text: 'Create account',
+              onTap: createAccount,
+            ),
             const Gap(20),
             const Row(
               children: [
