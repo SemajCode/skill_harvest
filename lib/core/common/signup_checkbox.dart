@@ -15,12 +15,12 @@ class _SignUpCheckBoxState extends State<SignUpCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
+      value: toggle,
       onChanged: (value) {
         setState(() {
           toggle = !toggle;
         });
       },
-      value: toggle,
       checkColor: Pallete.whiteColor,
       activeColor: Pallete.blueColor,
     );

@@ -36,20 +36,30 @@ class BottomActionWidget extends StatelessWidget {
   final String option;
   final VoidCallback? onPressed;
 
-  const BottomActionWidget(
-      {super.key, required this.title, required this.option, this.onPressed});
+  const BottomActionWidget({
+    super.key,
+    required this.title,
+    required this.option,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(TextSpan(text: title, children: [
+    return Text.rich(
       TextSpan(
-          text: option,
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              onPressed?.call();
-            },
-          style: const TextStyle(color: Pallete.blueColor))
-    ]));
+        text: title,
+        children: [
+          TextSpan(
+            text: option,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                onPressed?.call();
+              },
+            style: const TextStyle(color: Pallete.blueColor),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -109,7 +119,10 @@ class EnterDetailsText extends StatelessWidget {
     return const Text(
       'Enter your details below to login',
       style: TextStyle(
-          fontSize: 14, color: Pallete.greyText, fontWeight: FontWeight.normal),
+        fontSize: 14,
+        color: Pallete.greyText,
+        fontWeight: FontWeight.normal,
+      ),
     );
   }
 }

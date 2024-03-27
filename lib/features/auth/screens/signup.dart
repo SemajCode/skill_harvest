@@ -27,7 +27,6 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Pallete.offWhiteColor,
         toolbarHeight: 140,
         leadingWidth: double.infinity,
         leading: const Padding(
@@ -39,9 +38,9 @@ class _SignupState extends State<Signup> {
               Text(
                 "Sign Up",
                 style: TextStyle(
-                    color: Pallete.blackColor,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Gap(12),
               Text(

@@ -13,7 +13,6 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 120,
         leadingWidth: double.infinity,
@@ -23,17 +22,18 @@ class Login extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text('Log in',
-                  style: TextStyle(
-                      fontSize: 32,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
+              Text(
+                'Log in',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Gap(5),
               EnterDetailsText(),
             ],
           ),
         ),
-        backgroundColor: Colors.grey.withOpacity(0.2),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

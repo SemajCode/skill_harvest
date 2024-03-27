@@ -6,36 +6,23 @@ class Pallete {
   static const blackColor = Color.fromRGBO(1, 1, 1, 1);
   static const blueColor = Color.fromRGBO(61, 92, 255, 1);
   static const greyText = Colors.grey;
-
-  // 133,133,151
+  static const lAccentColor = Color.fromARGB(255, 87, 87, 87);
+  static const dAccentColor = Color.fromARGB(255, 147, 147, 148);
+  static const dSecondaryBackgroundColor = Color.fromARGB(255, 37, 37, 37);
 
   static var lightThemeMode = ThemeData.light().copyWith(
+    useMaterial3: true,
     scaffoldBackgroundColor: whiteColor,
     primaryColor: blueColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: whiteColor,
+      backgroundColor: offWhiteColor,
       foregroundColor: blackColor,
       elevation: 0,
     ),
-    // elevatedButtonTheme: ElevatedButtonThemeData(
-    //   style: ElevatedButton.styleFrom(
-    //     backgroundColor: blueColor,
-    //     foregroundColor: whiteColor,
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(14),
-    //     ),
-    //   ),
-    // ),
-    // outlinedButtonTheme: OutlinedButtonThemeData(
-    //   style: OutlinedButton.styleFrom(
-    //     backgroundColor: whiteColor,
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(14),
-    //       side: const BorderSide(
-    //         color: blueColor,
-    //       ),
-    //     ),
-    //   ),
-    // ),
+  );
+  static var darkThemeMode = ThemeData.dark().copyWith(
+    useMaterial3: true,
+    scaffoldBackgroundColor: blackColor,
+    primaryColor: blueColor,
   );
 }

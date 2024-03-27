@@ -8,16 +8,11 @@ class EmailTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
           hintText: 'Enter your Email',
           label: const Text(
             'Email',
-            style: TextStyle(
-              color: Colors.black,
-            ),
           ),
-          hintStyle: TextStyle(color: Colors.grey[350]),
           border: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: Pallete.greyText[350]!),
               borderRadius: BorderRadius.circular(15)),
@@ -50,18 +45,18 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: TextInputType.number,
-      style: const TextStyle(color: Colors.black),
+      // style: const TextStyle(color: Colors.black),
       obscureText: toggled,
       decoration: InputDecoration(
           suffixIcon: IconButton(
             icon: toggled
                 ? const Icon(
                     Icons.visibility_off,
-                    color: Colors.black,
+                    // color: Colors.black,
                   )
                 : const Icon(
                     Icons.visibility,
-                    color: Colors.black,
+                    // color: Colors.black,
                   ),
             onPressed: () {
               setState(() {
@@ -72,11 +67,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           hintText: 'Enter your Password',
           label: const Text(
             'Password',
-            style: TextStyle(
-              color: Pallete.blackColor,
-            ),
           ),
-          hintStyle: const TextStyle(color: Pallete.greyText),
           border: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: Pallete.greyText[350]!),
               borderRadius: BorderRadius.circular(15)),
