@@ -66,7 +66,9 @@ class CourseFilterChip extends StatelessWidget {
           style: BorderStyle.none,
         ),
         showCheckmark: false,
-        label: Text(text),
+        label: Text(
+          text,
+        ),
         onSelected: (value) {},
         selected: isSelect,
         selectedColor: Pallete.blueColor,
@@ -74,7 +76,7 @@ class CourseFilterChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
         ),
         labelStyle: TextStyle(
-          color: isSelect ? Pallete.whiteColor : Pallete.blackColor,
+          color: isSelect ? Pallete.whiteColor : Pallete.greyText,
         ),
       ),
     );

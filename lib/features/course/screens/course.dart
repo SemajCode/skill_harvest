@@ -62,9 +62,24 @@ class Course extends StatelessWidget {
             height: 325,
             child: ListView(
               children: const [
-                CourseItem(),
-                CourseItem(),
-                CourseItem(),
+                CourseItem(
+                  courseTitle: 'Product Design v1.0',
+                  courseValue: '190',
+                  facilitator: 'Robertson Connie',
+                  totalHours: '14',
+                ),
+                CourseItem(
+                  courseTitle: 'Java Development',
+                  courseValue: '200',
+                  facilitator: 'Nguyen Shane',
+                  totalHours: '18',
+                ),
+                CourseItem(
+                  courseTitle: 'Visual Design',
+                  courseValue: '250',
+                  facilitator: 'Bert Pullman',
+                  totalHours: '16',
+                ),
               ],
             ),
           )

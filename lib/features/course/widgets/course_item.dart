@@ -5,7 +5,16 @@ import 'package:skillharvest/Theme/pallete.dart';
 class CourseItem extends StatelessWidget {
   const CourseItem({
     super.key,
+    required this.courseTitle,
+    required this.courseValue,
+    required this.facilitator,
+    required this.totalHours,
   });
+
+  final String courseTitle;
+  final String courseValue;
+  final String facilitator;
+  final String totalHours;
 
   @override
   Widget build(BuildContext context) {
@@ -31,32 +40,33 @@ class CourseItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Product Design v1.0',
-                style: TextStyle(
+              Text(
+                courseTitle,
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.supervised_user_circle_sharp,
                     color: Pallete.greyText,
                     size: 12,
                   ),
-                  Gap(4),
+                  const Gap(4),
                   Text(
-                    'Bert Pullman',
-                    style: TextStyle(fontSize: 12, color: Pallete.greyText),
+                    facilitator,
+                    style:
+                        const TextStyle(fontSize: 12, color: Pallete.greyText),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  const Text(
-                    '\$190',
-                    style: TextStyle(
+                  Text(
+                    '\$$courseValue',
+                    style: const TextStyle(
                       color: Pallete.blueColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -68,9 +78,9 @@ class CourseItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Pallete.onPurpleBackground,
                         borderRadius: BorderRadius.circular(4)),
-                    child: const Text(
-                      '14 hours',
-                      style: TextStyle(
+                    child: Text(
+                      '$totalHours hours',
+                      style: const TextStyle(
                         color: Pallete.orangeColor,
                         fontSize: 10,
                       ),
