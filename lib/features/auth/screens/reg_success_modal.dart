@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
-import 'package:skillharvest/onboarding.dart';
+import 'package:skillharvest/features/onboarding/onboarding.dart';
 
 class RegSuccesModal extends StatelessWidget {
   const RegSuccesModal({

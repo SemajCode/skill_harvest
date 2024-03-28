@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:skillharvest/onboarding.dart';
+import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/onboarding/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -37,20 +38,22 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               'StudyBuddy',
               style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Pallete.blueColor),
             ),
             Gap(20),
             Text(
-              'Your Gateway to Knowledge! Dive into a World of Learning Excellence.',
+              'Your Gateway to Knowledge!\nDive into a World of Learning Excellence.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
               ),
             ),
             Gap(20),
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+              color: Pallete.blueColor,
+            )
           ],
         ),
       ),

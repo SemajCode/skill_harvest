@@ -9,8 +9,13 @@ class Pallete {
   static const lAccentColor = Color.fromARGB(255, 87, 87, 87);
   static const dAccentColor = Color.fromARGB(255, 147, 147, 148);
   static const dSecondaryBackgroundColor = Color.fromARGB(255, 37, 37, 37);
+  static const orangeColor = Color.fromARGB(255, 255, 105, 5);
+  static const purpleColor = Color.fromARGB(255, 68, 6, 135);
+  static const onPurpleBackground = Color.fromARGB(255, 231, 212, 252);
+  static const onBlueBackground = Color.fromRGBO(61, 93, 255, 0.329);
 
-  static var lightThemeMode = ThemeData.light().copyWith(
+  static var lightThemeMode = ThemeData(
+    fontFamily: 'Poppins',
     useMaterial3: true,
     scaffoldBackgroundColor: whiteColor,
     primaryColor: blueColor,
