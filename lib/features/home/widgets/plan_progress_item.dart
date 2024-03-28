@@ -31,6 +31,7 @@ class PlanProgressItem extends StatelessWidget {
                   color: Pallete.lAccentColor,
                   value: progressValue,
                   backgroundColor: Pallete.onBlueBackground,
+                  strokeWidth: 3.2,
                 ),
               ),
               const Gap(8),
@@ -40,7 +41,6 @@ class PlanProgressItem extends StatelessWidget {
           Text.rich(
             TextSpan(
               text: '$coveredVideos',
-              style: const TextStyle(),
               children: [
                 TextSpan(
                   text: '/$totalVideos',

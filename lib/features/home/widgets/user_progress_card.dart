@@ -11,7 +11,7 @@ class UserProgressCard extends StatelessWidget {
     return const Positioned(
       left: 12,
       right: 12,
-      top: 100,
+      top: 70,
       child: Card(
         color: Pallete.whiteColor,
         elevation: 4,

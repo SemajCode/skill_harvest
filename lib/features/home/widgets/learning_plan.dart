@@ -3,8 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/home/widgets/plan_progress_item.dart';
 
-class LearningPlanProgress extends StatelessWidget {
-  const LearningPlanProgress({
+class LearningPlan extends StatelessWidget {
+  const LearningPlan({
     super.key,
   });
 
@@ -24,7 +24,7 @@ class LearningPlanProgress extends StatelessWidget {
           ),
           Gap(12),
           Card(
-            color: Pallete.offWhiteColor,
+            color: Pallete.whiteColor,
             elevation: 4,
             child: Padding(
               padding: EdgeInsets.all(8.0),

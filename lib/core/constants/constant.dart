@@ -8,4 +8,6 @@ class AppImage {
   static const avatarSvg = 'assets/svgs/avatar.svg';
   static const handIllustration = 'assets/svgs/illustration1.svg';
   static const courseCardIllus = 'assets/svgs/course_card_illus.svg';
+  static const languageIllus = 'assets/svgs/lang_Illus.svg';
+  static const paintIllus = 'assets/svgs/paint_illus.svg';
 }

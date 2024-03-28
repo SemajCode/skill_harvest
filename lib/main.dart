@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/home/screens/home.dart';
 // import 'package:skillharvest/splash_screen.dart';
 
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: Pallete.lightThemeMode,
       darkTheme: Pallete.darkThemeMode,
       themeMode: ThemeMode.light,
-      home: const Home(),
+      home: const Course(),
     );
   }
 }
