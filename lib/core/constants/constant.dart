@@ -10,4 +10,7 @@ class AppImage {
   static const courseCardIllus = 'assets/svgs/course_card_illus.svg';
   static const languageIllus = 'assets/svgs/lang_Illus.svg';
   static const paintIllus = 'assets/svgs/paint_illus.svg';
+  static const selectedCourse = 'assets/svgs/selected_course.svg';
+
+  //selected_course.svg
 }

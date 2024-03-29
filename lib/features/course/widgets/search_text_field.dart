@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/course/widgets/filter_bottom_sheet.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
@@ -15,7 +16,16 @@ class SearchTextField extends StatelessWidget {
           hintText: 'Find Course',
           hintStyle: const TextStyle(color: Pallete.greyText),
           prefixIcon: const Icon(Icons.search, color: Pallete.greyText),
-          suffixIcon: const Icon(Icons.tune, color: Pallete.greyText),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => const FilterBottomSheet(),
+              );
+            },
+            child: const Icon(Icons.tune, color: Pallete.greyText),
+          ),
           fillColor: Pallete.offWhiteColor,
           filled: true,
           border: OutlineInputBorder(

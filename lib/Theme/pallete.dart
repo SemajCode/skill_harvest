@@ -13,8 +13,13 @@ class Pallete {
   static const purpleColor = Color.fromARGB(255, 68, 6, 135);
   static const onPurpleBackground = Color.fromARGB(255, 231, 212, 252);
   static const onBlueBackground = Color.fromRGBO(61, 93, 255, 0.329);
+  static const palePink = Color.fromARGB(255, 255, 231, 238);
+  static const vibrantOrange = Color.fromARGB(255, 255, 105, 5);
 
   static var lightThemeMode = ThemeData(
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: Pallete.blackColor),
+    ),
     fontFamily: 'Poppins',
     useMaterial3: true,
     scaffoldBackgroundColor: whiteColor,
