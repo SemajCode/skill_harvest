@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
@@ -11,19 +9,19 @@ class ChooseCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
+    return const Padding(
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Choose your course',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Gap(12),
+          Gap(12),
           Row(
             children: [
               CourseFilterChip(
@@ -62,7 +60,7 @@ class CourseFilterChip extends StatelessWidget {
       padding: const EdgeInsets.only(right: 16),
       child: FilterChip(
         backgroundColor: Pallete.offWhiteColor,
-        side: BorderSide(
+        side: const BorderSide(
           style: BorderStyle.none,
         ),
         showCheckmark: false,

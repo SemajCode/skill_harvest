@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -30,18 +28,34 @@ class SelectedCourse extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //
-                        Icon(
+                        const Icon(
                           Icons.visibility_off,
                           size: 20,
                         ),
-                        Gap(8),
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(color: Colors.yellow),
-                          child: Text('BESTSELLER'),
+                        const Gap(8),
+                        ClipPath(
+                          clipper: const ShapeBorderClipper(
+                            shape: BeveledRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(14),
+                                topRight: Radius.circular(14),
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.fromLTRB(8, 4, 16, 4),
+                            decoration: const BoxDecoration(
+                              color: Colors.yellow,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(4),
+                                bottomLeft: Radius.circular(4),
+                              ),
+                            ),
+                            child: const Text('BESTSELLER'),
+                          ),
                         ),
-                        Gap(18),
-                        Text(
+                        const Gap(18),
+                        const Text(
                           'Product Design v1.0',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -71,8 +85,8 @@ class SelectedCourse extends StatelessWidget {
                 color: Pallete.whiteColor,
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+              child: const Padding(
+                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -170,7 +184,7 @@ class SelectedCourse extends StatelessWidget {
               width: pageWidth(context),
               decoration: BoxDecoration(
                 color: Pallete.whiteColor,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
                 ),
@@ -179,7 +193,7 @@ class SelectedCourse extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -188,7 +202,7 @@ class SelectedCourse extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(100, 48),
+                      minimumSize: const Size(100, 48),
                       backgroundColor: Pallete.palePink,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
@@ -197,12 +211,12 @@ class SelectedCourse extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.star_border_outlined,
                       color: Pallete.vibrantOrange,
                     ),
                   ),
-                  Gap(12),
+                  const Gap(12),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(pageWidth(context) * 0.6, 48),
@@ -215,7 +229,7 @@ class SelectedCourse extends StatelessWidget {
                       foregroundColor: Pallete.whiteColor,
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Buy Now',
                     ),
                   )

@@ -1,9 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/util/helper.dart';
 import 'package:skillharvest/features/course/widgets/choose_course.dart';
 
@@ -46,15 +43,15 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
               ],
             ),
-            Gap(16),
-            Text(
+            const Gap(16),
+            const Text(
               'Categories',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Gap(10),
-            Wrap(
+            const Gap(10),
+            const Wrap(
               runSpacing: 10,
               children: [
                 CourseFilterChip(text: 'Design', isSelect: true),
@@ -65,8 +62,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 CourseFilterChip(text: 'Mathematics', isSelect: false),
               ],
             ),
-            Gap(16),
-            Text(
+            const Gap(16),
+            const Text(
               'Price',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -88,15 +85,15 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 });
               },
             ),
-            Gap(16),
-            Text(
+            const Gap(16),
+            const Text(
               'Duration',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Gap(10),
-            Wrap(
+            const Gap(10),
+            const Wrap(
               runSpacing: 10,
               children: [
                 CourseFilterChip(text: '3-8 hours', isSelect: true),
@@ -106,16 +103,16 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 CourseFilterChip(text: '24-28 hours ', isSelect: false),
               ],
             ),
-            Gap(46),
+            const Gap(46),
             Row(
               children: [
                 OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    fixedSize: Size(100, 54),
+                    fixedSize: const Size(100, 54),
                     foregroundColor: Pallete.blueColor,
                     backgroundColor: Pallete.whiteColor,
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Colors.blue,
                       style: BorderStyle.solid,
                     ),
@@ -123,12 +120,12 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Clear',
-                    style: const TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
-                Gap(16),
+                const Gap(16),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -139,9 +136,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Apply Filter ',
-                    style: const TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
               ],
