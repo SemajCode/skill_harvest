@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/constants/constant.dart';
-import 'package:skillharvest/features/auth/screens/reg_success_modal.dart';
+import 'package:skillharvest/features/auth/widget/reg_success_modal.dart';
 
 class PhoneLogin extends StatelessWidget {
   const PhoneLogin({super.key});

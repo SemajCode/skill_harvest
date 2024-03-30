@@ -5,6 +5,7 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';
 import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/course/screens/selected_course.dart';
+import 'package:skillharvest/features/course/widgets/lessons_video_player.dart';
 import 'package:skillharvest/features/home/screens/home.dart';
 import 'package:skillharvest/splash_screen.dart';
 // import 'package:skillharvest/splash_screen.dart';

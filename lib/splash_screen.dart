@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Pallete.blueColor),
-                    speed: const Duration(milliseconds: 250)),
+                    speed: const Duration(milliseconds: 300)),
               ],
             ),
             const Gap(20),
