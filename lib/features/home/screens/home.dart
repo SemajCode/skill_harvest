@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helper.dart';
+import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/home/widgets/course_card.dart';
 import 'package:skillharvest/features/home/widgets/learning_ads_items.dart';
 import 'package:skillharvest/features/home/widgets/learning_plan.dart';
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
+        automaticallyImplyLeading: false,
         backgroundColor: Pallete.blueColor,
         toolbarHeight: 0,
         elevation: 0,
@@ -43,7 +44,16 @@ class Home extends StatelessWidget {
             ),
           ),
           const LearningPlan(),
-          const CourseCard(),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const Course(),
+                ),
+              );
+            },
+            child: const CourseCard(),
+          ),
         ],
       ),
     );

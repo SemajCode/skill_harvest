@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void loadDelay() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const Onboarding(),
@@ -29,31 +30,31 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(18.0),
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'StudyBuddy',
-              style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Pallete.blueColor),
+            AnimatedTextKit(
+              animatedTexts: [
+                WavyAnimatedText('StudyBuddy',
+                    textStyle: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Pallete.blueColor),
+                    speed: const Duration(milliseconds: 250)),
+              ],
             ),
-            Gap(20),
-            Text(
+            const Gap(20),
+            const Text(
               'Your Gateway to Knowledge!\nDive into a World of Learning Excellence.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
               ),
             ),
-            Gap(20),
-            CircularProgressIndicator(
-              color: Pallete.blueColor,
-            )
+            const Gap(20),
           ],
         ),
       ),

@@ -17,7 +17,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16),
       child: SizedBox(
         height: 600,
         child: Column(
@@ -103,7 +103,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 CourseFilterChip(text: '24-28 hours ', isSelect: false),
               ],
             ),
-            const Gap(46),
+            const Gap(26),
             Row(
               children: [
                 OutlinedButton(
@@ -129,7 +129,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(pageWidth(context) * 0.6, 54),
+                    fixedSize: Size(pageWidth(context) * 0.58, 54),
                     backgroundColor: Pallete.blueColor,
                     foregroundColor: Pallete.whiteColor,
                     shape: RoundedRectangleBorder(

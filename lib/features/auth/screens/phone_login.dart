@@ -10,6 +10,13 @@ class PhoneLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void login() {
+      showDialog(
+        context: context,
+        builder: (context) => const RegSuccesModal(),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Pallete.offWhiteColor,
@@ -70,15 +77,11 @@ class PhoneLogin extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => const RegSuccesModal(),
-                      );
-                    },
+                    onPressed: login,
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(100, 48),
+                      fixedSize: const Size(115, 48),
                       backgroundColor: Pallete.blueColor,
+                      foregroundColor: Pallete.whiteColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(13),
                       ),

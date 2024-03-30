@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/auth/screens/signup.dart';
 import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/features/home/screens/home.dart';
+import 'package:skillharvest/splash_screen.dart';
 // import 'package:skillharvest/splash_screen.dart';
 
 void main() {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: Pallete.lightThemeMode,
       darkTheme: Pallete.darkThemeMode,
       themeMode: ThemeMode.light,
-      home: const SelectedCourse(),
+      home: const SplashScreen(),
     );
   }
 }

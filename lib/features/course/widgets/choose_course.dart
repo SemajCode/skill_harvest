@@ -59,6 +59,8 @@ class CourseFilterChip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: FilterChip(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Pallete.offWhiteColor,
         side: const BorderSide(
           style: BorderStyle.none,

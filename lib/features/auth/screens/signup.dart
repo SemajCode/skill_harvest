@@ -6,7 +6,7 @@ import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/signup_checkbox.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/features/auth/screens/login.dart';
-import 'package:skillharvest/features/auth/screens/reg_success_modal.dart';
+import 'package:skillharvest/features/auth/screens/phone_login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -17,9 +17,10 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   void createAccount() {
-    showDialog(
-      context: context,
-      builder: (context) => const RegSuccesModal(),
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const PhoneLogin(),
+      ),
     );
   }
 
@@ -70,7 +71,7 @@ class _SignupState extends State<Signup> {
               children: [
                 SignUpCheckBox(),
                 Text(
-                  'By creating an account you have to agree \n with our terms & conditions.',
+                  'By creating an account you have to\n agree with our terms & conditions.',
                   style: TextStyle(color: Pallete.greyText),
                 ),
               ],

@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 
-class CourseVideo extends StatelessWidget {
-  const CourseVideo({
+class CourseLesson extends StatelessWidget {
+  const CourseLesson({
     super.key,
     required this.title,
     required this.duration,
     required this.isLocked,
-    required this.videoId,
+    required this.lessonNo,
+    required this.isCompleted,
   });
 
   final String title;
   final String duration;
   final bool isLocked;
-  final String videoId;
+  final String lessonNo;
+  final bool isCompleted;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class CourseVideo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            videoId,
+            lessonNo,
             style: const TextStyle(
               fontSize: 24,
               color: Pallete.greyText,
@@ -49,30 +51,38 @@ class CourseVideo extends StatelessWidget {
                       ),
                     ),
                     const Gap(5),
-                    const Icon(
-                      Icons.check_circle_rounded,
-                      size: 14,
-                      color: Pallete.blueColor,
-                    ),
+                    isCompleted
+                        ? const Icon(
+                            Icons.check_circle_rounded,
+                            size: 14,
+                            color: Pallete.blueColor,
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ],
             ),
           ),
           isLocked
-              ? const CircleAvatar(
-                  backgroundColor: Pallete.onBlueBackground,
-                  maxRadius: 20,
-                  child: Icon(
-                    Icons.lock_rounded,
-                    size: 22,
-                    color: Pallete.whiteColor,
+              ? const SizedBox(
+                  width: 45,
+                  child: CircleAvatar(
+                    backgroundColor: Pallete.onBlueBackground,
+                    maxRadius: 19,
+                    child: Icon(
+                      Icons.lock_rounded,
+                      size: 22,
+                      color: Pallete.whiteColor,
+                    ),
                   ),
                 )
-              : const Icon(
-                  Icons.play_circle,
-                  size: 44,
-                  color: Pallete.blueColor,
+              : const SizedBox(
+                  width: 45,
+                  child: Icon(
+                    Icons.play_circle,
+                    size: 44,
+                    color: Pallete.blueColor,
+                  ),
                 ),
         ],
       ),
