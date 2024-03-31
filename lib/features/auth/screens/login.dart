@@ -6,6 +6,7 @@ import 'package:skillharvest/core/common/components.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/core/constants/constant.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';
+import 'package:skillharvest/features/auth/widget/or_login.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -50,18 +51,19 @@ class Login extends StatelessWidget {
             const Gap(30),
             PrimaryButton(text: 'Login', onTap: () {}),
             const Gap(30),
-            BottomActionWidget(
-                title: "I Don’t have an account? ",
-                option: 'Sign up?',
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const Signup(),
-                    ),
-                  );
-                }),
+            BottomAction(
+              title: "I Don’t have an account? ",
+              option: 'Sign up?',
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const Signup(),
+                  ),
+                );
+              },
+            ),
             const Gap(30),
-            const OrLoginWidget(),
+            const OrLoginWith(),
             const Gap(30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

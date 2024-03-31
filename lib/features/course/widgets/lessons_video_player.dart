@@ -21,10 +21,14 @@ class LessonsVideoPlayer extends StatefulWidget {
 class LessonsVideoPlayerState extends State<LessonsVideoPlayer> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: FlickVideoPlayer(flickManager: flickManager),
+    return Positioned(
+      top: 0,
+      child: SizedBox(
+        height: 220,
+        child: AspectRatio(
+          aspectRatio: 16 / 9,
+          child: FlickVideoPlayer(flickManager: flickManager),
+        ),
       ),
     );
   }
