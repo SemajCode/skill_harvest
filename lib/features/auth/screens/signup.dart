@@ -58,9 +58,15 @@ class _SignupState extends State<Signup> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const EmailTextField(),
+            const AppTextField(
+              hint: 'Enter your Email',
+              label: 'Email',
+            ),
             const Gap(20),
-            const PasswordTextField(),
+            const PasswordTextField(
+              hint: 'Enter your Password',
+              label: 'Password',
+            ),
             const Gap(20),
             PrimaryButton(
               text: 'Create account',

@@ -45,9 +45,15 @@ class Login extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(20),
-            const EmailTextField(),
+            const AppTextField(
+              hint: 'Enter your Email',
+              label: 'Email',
+            ),
             const Gap(30),
-            const PasswordTextField(),
+            const PasswordTextField(
+              hint: 'Enter your Password',
+              label: 'Password',
+            ),
             const Gap(10),
             const ForgotPassword(),
             const Gap(30),

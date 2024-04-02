@@ -1,13 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
-import 'package:skillharvest/core/constants/constant.dart';
 import 'package:skillharvest/features/payment/widgets/user_payment_card.dart';
 
 class PaymentCards extends StatelessWidget {
@@ -39,7 +35,10 @@ class PaymentCards extends StatelessWidget {
               ),
             ),
             Gap(4),
-            PrimaryButton(text: 'Add New Card', onTap: () {})
+            PrimaryButton(
+              text: 'Add New Card',
+              onTap: () {},
+            )
           ],
         ),
       ),
