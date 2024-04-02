@@ -27,6 +27,7 @@ class SelectedCourse extends StatelessWidget {
         children: [
           isPlaying
               ? const LessonsVideoPlayer()
+              // ignore: dead_code
               : const CourseCover(
                   title: 'Product Design v1.0',
                   isBestSelling: true,

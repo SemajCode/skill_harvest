@@ -15,16 +15,16 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(MediaQuery.of(context).size.width, 54),
+        fixedSize: Size(MediaQuery.of(context).size.width, 44),
         backgroundColor: Pallete.blueColor,
         foregroundColor: Pallete.whiteColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
       child: Text(
         text,
-        style: const TextStyle(fontSize: 18),
+        style: const TextStyle(fontSize: 16),
       ),
     );
   }

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/core/common/buttons.dart';
-import 'package:skillharvest/core/common/components.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/core/constants/constant.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';
+import 'package:skillharvest/features/auth/widget/bottom_action.dart';
+import 'package:skillharvest/features/auth/widget/enter_details_text.dart';
+import 'package:skillharvest/features/auth/widget/forgot_password.dart';
 import 'package:skillharvest/features/auth/widget/or_login.dart';
 
 class Login extends StatelessWidget {

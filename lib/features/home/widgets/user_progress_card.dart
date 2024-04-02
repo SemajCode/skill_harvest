@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/core/common/progress_indicator.dart';
 
 class UserProgressCard extends StatelessWidget {
   const UserProgressCard({
@@ -57,10 +58,14 @@ class UserProgressCard extends StatelessWidget {
                   ],
                 ),
               ),
-              LinearProgressIndicator(
+              UserProgressIndicator(
                 color: Pallete.orangeColor,
-                value: 0.7,
+                value: 0.3,
               )
+              // LinearProgressIndicator(
+              //   color: Pallete.orangeColor,
+              //   value: 0.7,
+              // )
             ],
           ),
         ),

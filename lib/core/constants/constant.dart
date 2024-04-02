@@ -11,6 +11,8 @@ class AppImage {
   static const languageIllus = 'assets/svgs/lang_Illus.svg';
   static const paintIllus = 'assets/svgs/paint_illus.svg';
   static const selectedCourse = 'assets/svgs/selected_course.svg';
+  static const masterCard = 'assets/svgs/mastercard.svg';
+  static const cardChip = 'assets/svgs/card_chip.svg';
 
   //selected_course.svg
 }
