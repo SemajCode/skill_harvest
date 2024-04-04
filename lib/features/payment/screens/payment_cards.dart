@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
+import 'package:skillharvest/core/util/helper.dart';
 import 'package:skillharvest/features/payment/widgets/user_payment_card.dart';
 
 class PaymentCards extends StatelessWidget {
@@ -25,20 +28,36 @@ class PaymentCards extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  UserPaymentCard(),
-                  UserPaymentCard(),
-                  UserPaymentCard(),
-                ],
-              ),
+            Column(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Add Card',
+                    style: TextStyle(
+                      color: Pallete.blueColor,
+                    ),
+                  ),
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: pageHeight(context) * 0.75,
+                    minHeight: 50,
+                  ),
+                  child: ListView(
+                    children: [
+                      UserPaymentCard(),
+                      UserPaymentCard(),
+                    ],
+                  ),
+                ),
+                Gap(4),
+              ],
             ),
-            Gap(4),
             PrimaryButton(
-              text: 'Add New Card',
+              text: 'Make Payment',
               onTap: () {},
-            )
+            ),
           ],
         ),
       ),
