@@ -28,7 +28,7 @@ class PaymentCards extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'Add Card',
                     style: TextStyle(
                       color: Pallete.blueColor,
@@ -41,13 +41,13 @@ class PaymentCards extends StatelessWidget {
                     minHeight: 50,
                   ),
                   child: ListView(
-                    children: [
+                    children: const [
                       UserPaymentCard(),
                       UserPaymentCard(),
                     ],
                   ),
                 ),
-                Gap(4),
+                const Gap(4),
               ],
             ),
             PrimaryButton(
