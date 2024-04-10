@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/course/controllers/video_controller.dart';
 
-class CourseLesson extends StatelessWidget {
+class CourseLesson extends ConsumerWidget {
   const CourseLesson({
     super.key,
     required this.title,
@@ -19,7 +21,7 @@ class CourseLesson extends StatelessWidget {
   final bool isCompleted;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
@@ -77,7 +79,9 @@ class CourseLesson extends StatelessWidget {
                   ),
                 )
               : InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    ref.read(playVideoProvider).playCourse();
+                  },
                   child: const SizedBox(
                     width: 40,
                     child: Icon(

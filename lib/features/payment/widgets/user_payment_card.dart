@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/constants/constant.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
 
 class UserPaymentCard extends StatelessWidget {
   const UserPaymentCard({

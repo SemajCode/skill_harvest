@@ -16,6 +16,17 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final TextEditingController textController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    textController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   void createAccount() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -58,12 +69,14 @@ class _SignupState extends State<Signup> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const AppTextField(
+            AppTextField(
+              textController: textController,
               hint: 'Enter your Email',
               label: 'Email',
             ),
             const Gap(20),
-            const PasswordTextField(
+            PasswordTextField(
+              passwordController: passwordController,
               hint: 'Enter your Password',
               label: 'Password',
             ),

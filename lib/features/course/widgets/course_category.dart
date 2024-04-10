@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/util/helper.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 
 class CourseCategory extends StatelessWidget {
   const CourseCategory({

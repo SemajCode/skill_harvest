@@ -5,8 +5,25 @@ import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/features/payment/widgets/user_payment_card.dart';
 
-class AddCard extends StatelessWidget {
+class AddCard extends StatefulWidget {
   const AddCard({super.key});
+
+  @override
+  State<AddCard> createState() => _AddCardState();
+}
+
+class _AddCardState extends State<AddCard> {
+  final TextEditingController textEditingController = TextEditingController();
+
+  final TextEditingController passwordEditingController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    passwordEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,26 +42,29 @@ class AddCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+            Column(
               children: [
-                UserPaymentCard(),
-                Gap(20),
+                const UserPaymentCard(),
+                const Gap(20),
                 AppTextField(
+                  textController: textEditingController,
                   label: 'Card Holder Name',
                   hint: '',
                 ),
-                Gap(12),
+                const Gap(12),
                 PasswordTextField(
+                  passwordController: passwordEditingController,
                   label: 'Card Number',
                   hint: '',
                 ),
-                Gap(12),
+                const Gap(12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                       width: 150,
                       child: AppTextField(
+                        textController: textEditingController,
                         label: 'Expiry Date',
                         hint: '',
                       ),
@@ -52,6 +72,7 @@ class AddCard extends StatelessWidget {
                     SizedBox(
                       width: 100,
                       child: AppTextField(
+                        textController: textEditingController,
                         label: 'CVV',
                         hint: '',
                       ),

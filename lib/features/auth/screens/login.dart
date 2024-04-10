@@ -1,20 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
-import 'package:skillharvest/core/constants/constant.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/core/util/validators/validator.dart';
+import 'package:skillharvest/features/auth/controllers/login_controller.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';
 import 'package:skillharvest/features/auth/widget/bottom_action.dart';
 import 'package:skillharvest/features/auth/widget/enter_details_text.dart';
 import 'package:skillharvest/features/auth/widget/forgot_password.dart';
 import 'package:skillharvest/features/auth/widget/or_login.dart';
 
-class Login extends StatelessWidget {
+class Login extends ConsumerStatefulWidget {
   const Login({super.key});
 
   @override
+  ConsumerState<Login> createState() => _LoginState();
+}
+
+class _LoginState extends ConsumerState<Login> {
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final emailValidatorText = Validator.validateEmail(emailController.text);
+    if (emailValidatorText == null) {
+      ref
+          .read(loginProvider)
+          .login(passwordController.text, emailController.text);
+    }
+    showSnackBar(context, emailValidatorText!);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    bool isBusy = ref.watch(loginProvider).isBusy;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
@@ -45,19 +77,32 @@ class Login extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(20),
-            const AppTextField(
+            AppTextField(
+              textController: emailController,
               hint: 'Enter your Email',
               label: 'Email',
             ),
             const Gap(30),
-            const PasswordTextField(
+            PasswordTextField(
+              passwordController: passwordController,
               hint: 'Enter your Password',
               label: 'Password',
             ),
             const Gap(10),
             const ForgotPassword(),
             const Gap(30),
-            PrimaryButton(text: 'Login', onTap: () {}),
+            isBusy
+                ? const SizedBox(
+                    height: 44,
+                    width: 44,
+                    child: CircularProgressIndicator(
+                      color: Pallete.blueColor,
+                    ),
+                  )
+                : PrimaryButton(
+                    text: 'Login',
+                    onTap: _submit,
+                  ),
             const Gap(30),
             BottomAction(
               title: "I Don’t have an account? ",

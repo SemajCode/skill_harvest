@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/util/helper.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 
 class CourseActionButtons extends StatelessWidget {
   const CourseActionButtons({

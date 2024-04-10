@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/constants/constant.dart';
-import 'package:skillharvest/core/util/helper.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/features/course/controllers/video_controller.dart';
 import 'package:skillharvest/features/course/widgets/course_action_buttons.dart';
 import 'package:skillharvest/features/course/widgets/course_cover.dart';
 import 'package:skillharvest/features/course/widgets/course_info.dart';
 import 'package:skillharvest/features/course/widgets/course_lesson.dart';
 import 'package:skillharvest/features/course/widgets/lessons_video_player.dart';
 
-class SelectedCourse extends StatefulWidget {
+class SelectedCourse extends ConsumerStatefulWidget {
   const SelectedCourse({super.key});
 
   @override
-  State<SelectedCourse> createState() => _SelectedCourseState();
+  ConsumerState<SelectedCourse> createState() => _SelectedCourseState();
 }
 
-class _SelectedCourseState extends State<SelectedCourse> {
-  bool isPlaying = true;
+class _SelectedCourseState extends ConsumerState<SelectedCourse> {
+  // @override
+  // void initState() {
+  //   videoController.addListener(() {
+  //     setState(() {});
+  //   });
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    bool isPlaying = ref.watch(playVideoProvider).isPlaying;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/util/helper.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/home/widgets/course_card.dart';
 import 'package:skillharvest/features/home/widgets/learning_ads_items.dart';

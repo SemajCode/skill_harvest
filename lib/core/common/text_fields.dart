@@ -6,13 +6,16 @@ class AppTextField extends StatelessWidget {
     super.key,
     required this.label,
     required this.hint,
+    required this.textController,
   });
   final String label;
   final String hint;
+  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: textController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: hint,
@@ -45,9 +48,11 @@ class PasswordTextField extends StatefulWidget {
     super.key,
     required this.label,
     required this.hint,
+    required this.passwordController,
   });
   final String label;
   final String hint;
+  final TextEditingController passwordController;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -59,6 +64,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.passwordController,
       keyboardType: TextInputType.number,
       obscureText: toggled,
       decoration: InputDecoration(
