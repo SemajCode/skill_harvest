@@ -79,7 +79,9 @@ class CourseLesson extends ConsumerWidget {
                 )
               : InkWell(
                   onTap: () {
-                    ref.read(playVideoProvider.notifier).play();
+                    ref
+                        .read(playVideoProvider.notifier)
+                        .update((state) => !state);
                   },
                   child: const SizedBox(
                     width: 40,

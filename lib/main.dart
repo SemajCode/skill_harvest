@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: Pallete.lightThemeMode,
       darkTheme: Pallete.darkThemeMode,
       themeMode: ThemeMode.light,
-      home: const SelectedCourse(),
+      home: const Login(),
     );
   }
 }

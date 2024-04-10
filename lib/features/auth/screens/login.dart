@@ -36,12 +36,13 @@ class _LoginState extends ConsumerState<Login> {
 
   void _submit() {
     final emailValidatorText = Validator.validateEmail(emailController.text);
-    if (emailValidatorText == null) {
+    final passValidatorText =
+        Validator.validatePassword(passwordController.text);
+    if (emailValidatorText == null || passValidatorText == null) {
       ref
           .read(loginProvider)
           .login(passwordController.text, emailController.text);
     }
-    showSnackBar(context, emailValidatorText!);
   }
 
   @override

@@ -23,25 +23,23 @@ final playVideoProvider = ChangeNotifierProvider((ref) {
 */
 
 //Using the StateProvider
-/*
 final playVideoProvider = StateProvider<bool>((ref) {
   bool isPlaying = false;
 
   return isPlaying;
 });
-*/
 
 //Using the StateNotifierProvider
 
-final VideoNotifier _videoNotifier = VideoNotifier(false);
+// final VideoNotifier _videoNotifier = VideoNotifier(false);
 
-class VideoNotifier extends StateNotifier<bool> {
-  VideoNotifier(super.state);
-  void play() {
-    state = !state;
-  }
-}
+// class VideoNotifier extends StateNotifier<bool> {
+//   VideoNotifier(super.state);
+//   void play() {
+//     state = !state;
+//   }
+// }
 
-final playVideoProvider = StateNotifierProvider<VideoNotifier, bool>((ref) {
-  return _videoNotifier;
-});
+// final playVideoProvider = StateNotifierProvider<VideoNotifier, bool>((ref) {
+//   return _videoNotifier;
+// });
