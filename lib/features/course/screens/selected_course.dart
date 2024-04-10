@@ -44,7 +44,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                         IconButton(
                           onPressed: () {
                             setState(() {
-                              isPlaying = false;
+                              ref.watch(playVideoProvider.notifier).play();
                             });
                           },
                           icon: const Icon(
