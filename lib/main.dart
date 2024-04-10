@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/features/course/screens/selected_course.dart';
+// ignore: unused_import
 import 'package:skillharvest/splash_screen.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: Pallete.lightThemeMode,
       darkTheme: Pallete.darkThemeMode,
       themeMode: ThemeMode.light,
-      home: const SplashScreen(),
+      home: const SelectedCourse(),
     );
   }
 }

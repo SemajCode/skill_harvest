@@ -9,12 +9,17 @@ import 'package:skillharvest/features/course/widgets/course_info.dart';
 import 'package:skillharvest/features/course/widgets/course_lesson.dart';
 import 'package:skillharvest/features/course/widgets/lessons_video_player.dart';
 
-class SelectedCourse extends StatelessWidget {
+class SelectedCourse extends StatefulWidget {
   const SelectedCourse({super.key});
 
   @override
+  State<SelectedCourse> createState() => _SelectedCourseState();
+}
+
+class _SelectedCourseState extends State<SelectedCourse> {
+  bool isPlaying = true;
+  @override
   Widget build(BuildContext context) {
-    bool isPlaying = true;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -26,8 +31,29 @@ class SelectedCourse extends StatelessWidget {
       body: Stack(
         children: [
           isPlaying
-              ? const LessonsVideoPlayer()
-              // ignore: dead_code
+              ? Positioned(
+                  top: 0,
+                  child: SizedBox(
+                    height: 220,
+                    child: Stack(
+                      children: [
+                        const LessonsVideoPlayer(),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isPlaying = false;
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Pallete.whiteColor,
+                            size: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               : const CourseCover(
                   title: 'Product Design v1.0',
                   isBestSelling: true,

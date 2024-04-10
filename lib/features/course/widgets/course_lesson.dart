@@ -65,7 +65,7 @@ class CourseLesson extends StatelessWidget {
           ),
           isLocked
               ? const SizedBox(
-                  width: 45,
+                  width: 40,
                   child: CircleAvatar(
                     backgroundColor: Pallete.onBlueBackground,
                     maxRadius: 19,
@@ -76,12 +76,15 @@ class CourseLesson extends StatelessWidget {
                     ),
                   ),
                 )
-              : const SizedBox(
-                  width: 45,
-                  child: Icon(
-                    Icons.play_circle,
-                    size: 44,
-                    color: Pallete.blueColor,
+              : InkWell(
+                  onTap: () {},
+                  child: const SizedBox(
+                    width: 40,
+                    child: Icon(
+                      Icons.play_circle,
+                      size: 44,
+                      color: Pallete.blueColor,
+                    ),
                   ),
                 ),
         ],
