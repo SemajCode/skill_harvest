@@ -19,17 +19,9 @@ class SelectedCourse extends ConsumerStatefulWidget {
 }
 
 class _SelectedCourseState extends ConsumerState<SelectedCourse> {
-  // @override
-  // void initState() {
-  //   videoController.addListener(() {
-  //     setState(() {});
-  //   });
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
-    bool isPlaying = ref.watch(playVideoProvider).isPlaying;
+    bool isPlaying = ref.watch(playVideoProvider);
 
     return Scaffold(
       appBar: AppBar(

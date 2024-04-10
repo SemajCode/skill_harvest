@@ -19,7 +19,6 @@ class CourseLesson extends ConsumerWidget {
   final bool isLocked;
   final String lessonNo;
   final bool isCompleted;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -80,7 +79,9 @@ class CourseLesson extends ConsumerWidget {
                 )
               : InkWell(
                   onTap: () {
-                    ref.read(playVideoProvider).playCourse();
+                    ref
+                        .read(playVideoProvider.notifier)
+                        .update((state) => !state);
                   },
                   child: const SizedBox(
                     width: 40,
