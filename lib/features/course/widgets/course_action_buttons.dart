@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
+import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 
 class CourseActionButtons extends ConsumerStatefulWidget {
   const CourseActionButtons({super.key, required this.courseIndex});
@@ -15,6 +16,19 @@ class CourseActionButtons extends ConsumerStatefulWidget {
 }
 
 class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
+  void starCourse() {
+    ref.read(courseProvider.notifier).star(widget.courseIndex);
+    setState(() {});
+  }
+
+  void buyCourse() {
+    ref.read(courseProvider.notifier).buy(widget.courseIndex);
+
+    final paidCourse = ref.read(courseProvider)[widget.courseIndex];
+
+    ref.read(userCourseProvider.notifier).addCourse(paidCourse);
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isFavorite =
@@ -52,10 +66,7 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                   ),
                 ),
               ),
-              onPressed: () {
-                ref.read(courseProvider.notifier).star(widget.courseIndex);
-                setState(() {});
-              },
+              onPressed: starCourse,
               child: isFavorite
                   ? const Icon(
                       Icons.star,
@@ -78,7 +89,7 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                 backgroundColor: Pallete.blueColor,
                 foregroundColor: Pallete.whiteColor,
               ),
-              onPressed: () {},
+              onPressed: buyCourse,
               child: const Text(
                 'Buy Now',
               ),

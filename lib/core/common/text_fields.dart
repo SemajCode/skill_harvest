@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/core/util/validators/validator.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
