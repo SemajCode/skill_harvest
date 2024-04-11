@@ -1,1 +1,6 @@
-enum Category { coding }
+enum CourseCategory {
+  coding,
+  design,
+  marketing,
+  finance,
+}

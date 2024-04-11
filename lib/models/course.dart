@@ -1,5 +1,5 @@
 import 'package:skillharvest/core/util/constants/enums.dart';
-import 'package:skillharvest/features/course/widgets/course_lesson.dart';
+import 'package:skillharvest/models/course_lesson.dart';
 
 class Course {
   Course({
@@ -20,7 +20,7 @@ class Course {
   final int duration;
   final String description;
   final List<CourseLesson> lessons;
-  final Category category;
+  final CourseCategory category;
   final bool isPaid;
   final int noOfLessons;
   final int completedLessons;
