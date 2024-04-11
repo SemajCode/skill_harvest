@@ -20,7 +20,7 @@ class LessonsVideoPlayerState extends State<LessonsVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: 205,
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: FlickVideoPlayer(flickManager: flickManager),

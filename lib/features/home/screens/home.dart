@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/screens/course.dart';
 import 'package:skillharvest/features/home/widgets/course_card.dart';
 import 'package:skillharvest/features/home/widgets/learning_ads_items.dart';
 import 'package:skillharvest/features/home/widgets/learning_plan.dart';
-import 'package:skillharvest/features/home/widgets/user_progress_card.dart';
+import 'package:skillharvest/core/common/user_progress_card.dart';
 import 'package:skillharvest/features/home/widgets/welcome_message.dart';
 
 class Home extends StatelessWidget {
@@ -28,7 +29,17 @@ class Home extends StatelessWidget {
             child: Stack(
               children: [
                 WelcomeMessage(),
-                UserProgressCard(),
+                Positioned(
+                  left: 12,
+                  right: 12,
+                  top: 70,
+                  child: UserProgressCard(
+                    coveredDailyDuration: 46,
+                    indicatorValue: 0.6,
+                    indicatorColor: Pallete.orangeColor,
+                    totalDailyDuration: 60,
+                  ),
+                ),
               ],
             ),
           ),

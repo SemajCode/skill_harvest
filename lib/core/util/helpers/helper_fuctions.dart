@@ -9,6 +9,10 @@ double pageWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
 }
 
+double calcProgress(int covered, int total) {
+  return (covered / total);
+}
+
 void showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(

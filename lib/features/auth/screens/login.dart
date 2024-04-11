@@ -73,61 +73,63 @@ class _LoginState extends ConsumerState<Login> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Gap(20),
-            AppTextField(
-              textController: emailController,
-              hint: 'Enter your Email',
-              label: 'Email',
-            ),
-            const Gap(30),
-            PasswordTextField(
-              passwordController: passwordController,
-              hint: 'Enter your Password',
-              label: 'Password',
-            ),
-            const Gap(10),
-            const ForgotPassword(),
-            const Gap(30),
-            isBusy
-                ? const SizedBox(
-                    height: 44,
-                    width: 44,
-                    child: CircularProgressIndicator(
-                      color: Pallete.blueColor,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Gap(20),
+              AppTextField(
+                textController: emailController,
+                hint: 'Enter your Email',
+                label: 'Email',
+              ),
+              const Gap(30),
+              PasswordTextField(
+                passwordController: passwordController,
+                hint: 'Enter your Password',
+                label: 'Password',
+              ),
+              const Gap(10),
+              const ForgotPassword(),
+              const Gap(30),
+              isBusy
+                  ? const SizedBox(
+                      height: 44,
+                      width: 44,
+                      child: CircularProgressIndicator(
+                        color: Pallete.blueColor,
+                      ),
+                    )
+                  : PrimaryButton(
+                      text: 'Login',
+                      onTap: _submit,
                     ),
-                  )
-                : PrimaryButton(
-                    text: 'Login',
-                    onTap: _submit,
-                  ),
-            const Gap(30),
-            BottomAction(
-              title: "I Don’t have an account? ",
-              option: 'Sign up?',
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const Signup(),
-                  ),
-                );
-              },
-            ),
-            const Gap(30),
-            const OrLoginWith(),
-            const Gap(30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(AppImage.facebookSvg),
-                const Gap(30),
-                SvgPicture.asset(AppImage.googleSvg),
-              ],
-            )
-          ],
+              const Gap(30),
+              BottomAction(
+                title: "I Don’t have an account? ",
+                option: 'Sign up?',
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Signup(),
+                    ),
+                  );
+                },
+              ),
+              const Gap(30),
+              const OrLoginWith(),
+              const Gap(30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(AppImage.facebookSvg),
+                  const Gap(30),
+                  SvgPicture.asset(AppImage.googleSvg),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

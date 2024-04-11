@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 
 class PlanProgressItem extends StatelessWidget {
   const PlanProgressItem({
@@ -16,7 +17,7 @@ class PlanProgressItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double progressValue = coveredVideos / totalVideos;
+    final double progressValue = calcProgress(coveredVideos, totalVideos);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(

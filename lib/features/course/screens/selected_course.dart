@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
@@ -25,6 +26,9 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
 
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          systemNavigationBarColor: Pallete.blueColor,
+        ),
         automaticallyImplyLeading: false,
         backgroundColor: Pallete.palePink,
         toolbarHeight: 0,
