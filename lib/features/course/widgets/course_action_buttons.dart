@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/features/course/providers/course_provider.dart';
 
-class CourseActionButtons extends StatelessWidget {
-  const CourseActionButtons({
-    super.key,
-  });
+class CourseActionButtons extends ConsumerStatefulWidget {
+  const CourseActionButtons({super.key, required this.courseIndex});
+  final int courseIndex;
 
   @override
+  ConsumerState<CourseActionButtons> createState() =>
+      _CourseActionButtonsState();
+}
+
+class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
+  @override
   Widget build(BuildContext context) {
+    final bool isFavorite =
+        ref.watch(courseProvider)[widget.courseIndex].isFavorite;
     return Positioned(
       bottom: 0,
       child: Container(
@@ -43,11 +52,19 @@ class CourseActionButtons extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
-              child: const Icon(
-                Icons.star_border_outlined,
-                color: Pallete.vibrantOrange,
-              ),
+              onPressed: () {
+                ref.read(courseProvider.notifier).star(widget.courseIndex);
+                setState(() {});
+              },
+              child: isFavorite
+                  ? const Icon(
+                      Icons.star,
+                      color: Pallete.vibrantOrange,
+                    )
+                  : const Icon(
+                      Icons.star_border_outlined,
+                      color: Pallete.vibrantOrange,
+                    ),
             ),
             const Gap(12),
             ElevatedButton(

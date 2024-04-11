@@ -127,7 +127,9 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
               ),
             ),
           ),
-          const CourseActionButtons()
+          CourseActionButtons(
+            courseIndex: widget.courseIndex,
+          )
         ],
       ),
     );

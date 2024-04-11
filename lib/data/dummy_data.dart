@@ -8,6 +8,7 @@ List<Course> dummyCourses = [
     price: '19.99',
     instructor: 'John Doe',
     isBestSelling: true,
+    isFavorite: false,
     duration: '2 hours 15 min',
     description:
         'Learn the basics of programming with this introductory course.',
@@ -17,7 +18,7 @@ List<Course> dummyCourses = [
         lessonNumber: 1,
         duration: '1 hour',
         isLocked: false,
-        isCompleted: false,
+        isCompleted: true,
       ),
       CourseLesson(
         title: 'Conditional Statements',
@@ -44,6 +45,7 @@ List<Course> dummyCourses = [
     price: '29.99',
     instructor: 'Jane Smith',
     isBestSelling: true,
+    isFavorite: false,
     duration: '3 hours 15 min',
     description:
         'Learn the basics of UI/UX design and create stunning user interfaces.',
@@ -80,6 +82,7 @@ List<Course> dummyCourses = [
     price: '39.99',
     instructor: 'Alice Johnson',
     isBestSelling: false,
+    isFavorite: false,
     duration: '4 hours 30 min',
     description:
         'Master the fundamentals of digital marketing and boost your online presence.',
@@ -116,6 +119,7 @@ List<Course> dummyCourses = [
     price: '49.99',
     instructor: 'Bob Williams',
     isBestSelling: false,
+    isFavorite: false,
     duration: '4 hours 30 min',
     description:
         'Learn how to analyze financial data and make informed business decisions.',
@@ -152,6 +156,7 @@ List<Course> dummyCourses = [
     price: '59.99',
     instructor: 'Alex Johnson',
     isBestSelling: true,
+    isFavorite: false,
     duration: '5 hours',
     description:
         'Become a full-stack web developer and build impressive web applications.',
@@ -188,6 +193,7 @@ List<Course> dummyCourses = [
     price: '69.99',
     instructor: 'Sophia Williams',
     isBestSelling: false,
+    isFavorite: false,
     duration: '6 hours',
     description:
         'Unlock your creativity and master graphic design principles and tools.',
@@ -224,6 +230,7 @@ List<Course> dummyCourses = [
     price: '79.99',
     instructor: 'Ella Brown',
     isBestSelling: true,
+    isFavorite: false,
     duration: '7 hours',
     description:
         'Learn effective social media marketing strategies to grow your business.',
@@ -260,6 +267,7 @@ List<Course> dummyCourses = [
     price: '89.99',
     instructor: 'Michael Davis',
     isBestSelling: false,
+    isFavorite: false,
     duration: '8 hours',
     description: 'Take control of your finances and achieve financial freedom.',
     lessons: [
@@ -295,6 +303,7 @@ List<Course> dummyCourses = [
     price: '99.99',
     instructor: 'David Wilson',
     isBestSelling: true,
+    isFavorite: false,
     duration: '9 hours',
     description: 'Learn to build mobile apps for iOS and Android platforms.',
     lessons: [
@@ -330,6 +339,7 @@ List<Course> dummyCourses = [
     price: '109.99',
     instructor: 'Emily Moore',
     isBestSelling: false,
+    isFavorite: false,
     duration: '10 hours',
     description:
         'Start and grow your own successful e-commerce business from scratch.',

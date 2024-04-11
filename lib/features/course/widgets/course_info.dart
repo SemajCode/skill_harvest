@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 
 class CourseInfo extends StatelessWidget {
   const CourseInfo({
@@ -30,11 +32,14 @@ class CourseInfo extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                SizedBox(
+                  width: pageWidth(context) * 0.65,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
                 const Gap(2),

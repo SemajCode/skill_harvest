@@ -45,7 +45,7 @@ class CourseLesson extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      '$duration mins',
+                      duration,
                       style: const TextStyle(
                         fontSize: 12,
                         color: Pallete.blueColor,
