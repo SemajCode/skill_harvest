@@ -17,7 +17,7 @@ class Course {
   final String title;
   final String price;
   final String instructor;
-  final int duration;
+  final String duration;
   final String description;
   final List<CourseLesson> lessons;
   final CourseCategory category;
