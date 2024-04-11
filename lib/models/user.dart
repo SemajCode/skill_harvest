@@ -8,5 +8,5 @@ class User {
   });
   final String displayName;
   final String imagePath;
-  final List<Course> userCourses;
+  final List<CourseScreen> userCourses;
 }

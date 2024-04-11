@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/controllers/video_controller.dart';
+import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/widgets/course_action_buttons.dart';
 import 'package:skillharvest/features/course/widgets/course_cover.dart';
 import 'package:skillharvest/features/course/widgets/course_info.dart';
@@ -13,7 +15,12 @@ import 'package:skillharvest/features/course/widgets/course_lesson.dart';
 import 'package:skillharvest/features/course/widgets/lessons_video_player.dart';
 
 class SelectedCourse extends ConsumerStatefulWidget {
-  const SelectedCourse({super.key});
+  const SelectedCourse({
+    super.key,
+    required this.courseIndex,
+  });
+
+  final int courseIndex;
 
   @override
   ConsumerState<SelectedCourse> createState() => _SelectedCourseState();
@@ -23,6 +30,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
   @override
   Widget build(BuildContext context) {
     bool isPlaying = ref.watch(playVideoProvider);
+    final selectedCourse = ref.watch(courseProvider)[widget.courseIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -63,9 +71,9 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                     ),
                   ),
                 )
-              : const CourseCover(
-                  title: 'Product Design v1.0',
-                  isBestSelling: true,
+              : CourseCover(
+                  title: selectedCourse.title,
+                  isBestSelling: selectedCourse.isBestSelling,
                   svgImage: AppImage.selectedCourse,
                 ),
           Positioned(
@@ -77,47 +85,43 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                 color: Pallete.whiteColor,
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(16),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CourseInfo(
-                      title: 'Product Design',
-                      about:
-                          'Learn product validation, UI/UX practices, Google’s Design Sprint and the process for setting and tracking actionable metrics.',
-                      totalDuration: '6h 14min',
-                      price: '78.00',
-                      noOfLessons: '24',
+                      title: selectedCourse.title,
+                      about: selectedCourse.description,
+                      totalDuration: selectedCourse.duration,
+                      price: selectedCourse.price,
+                      noOfLessons: selectedCourse.noOfLessons,
                     ),
-                    Center(
+                    const Center(
                       child: Icon(
                         Icons.visibility_off,
                         size: 14,
                       ),
                     ),
-                    Gap(16),
-                    CourseLesson(
-                      title: 'Welcome to the course',
-                      duration: '6:10',
-                      isLocked: false,
-                      lessonNo: '01',
-                      isCompleted: true,
-                    ),
-                    CourseLesson(
-                      title: 'Process Overview',
-                      duration: '6:10',
-                      isLocked: false,
-                      lessonNo: '02',
-                      isCompleted: false,
-                    ),
-                    CourseLesson(
-                      title: 'Discovery',
-                      duration: '6:10',
-                      isLocked: true,
-                      lessonNo: '03',
-                      isCompleted: false,
-                    ),
+                    const Gap(16),
+                    SizedBox(
+                      height: 234,
+                      width: pageWidth(context),
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: selectedCourse.lessons.length,
+                        itemBuilder: (context, index) {
+                          final courseLesson = selectedCourse.lessons[index];
+                          return CourseLesson(
+                            title: courseLesson.title,
+                            duration: courseLesson.duration,
+                            isLocked: courseLesson.isLocked,
+                            lessonNo: courseLesson.lessonNumber,
+                            isCompleted: courseLesson.isCompleted,
+                          );
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),

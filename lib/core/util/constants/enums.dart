@@ -1,4 +1,4 @@
-enum CourseCategory {
+enum CategoryConst {
   coding,
   design,
   marketing,

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/constants/constant.dart';
+import 'package:skillharvest/core/util/constants/enums.dart';
+import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/features/course/widgets/choose_course.dart';
 import 'package:skillharvest/features/course/widgets/course_category.dart';
 import 'package:skillharvest/features/course/widgets/course_item.dart';
 import 'package:skillharvest/features/course/widgets/search_text_field.dart';
+// import 'package:skillharvest/core/util/constants/enums.dart';
 
-class Course extends StatelessWidget {
-  const Course({super.key});
+class CourseScreen extends StatelessWidget {
+  const CourseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,58 +48,89 @@ class Course extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.only(left: 16),
               scrollDirection: Axis.horizontal,
-              children: const [
+              children: [
                 CourseCategory(
                   categoryImage: AppImage.languageIllus,
-                  categoryText: 'Language',
+                  categoryText: CategoryConst.coding.name,
                   color: Pallete.blueColor,
                 ),
-                Gap(16),
+                const Gap(16),
                 CourseCategory(
                   categoryImage: AppImage.paintIllus,
-                  categoryText: 'Painting',
+                  categoryText: CategoryConst.design.name,
                   color: Pallete.purpleColor,
                 ),
               ],
             ),
           ),
           const ChooseCourse(),
-          SizedBox(
-            height: 325,
-            child: ListView(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const SelectedCourse(),
-                      ),
-                    );
-                  },
-                  child: const CourseItem(
-                    courseTitle: 'Product Design v1.0',
-                    courseValue: '190',
-                    facilitator: 'Robertson Connie',
-                    totalHours: '14',
-                  ),
-                ),
-                const CourseItem(
-                  courseTitle: 'Java Development',
-                  courseValue: '200',
-                  facilitator: 'Nguyen Shane',
-                  totalHours: '18',
-                ),
-                const CourseItem(
-                  courseTitle: 'Visual Design',
-                  courseValue: '250',
-                  facilitator: 'Bert Pullman',
-                  totalHours: '16',
-                ),
-              ],
-            ),
+          Consumer(
+            builder: (context, ref, child) {
+              final courseList = ref.watch(courseProvider);
+
+              return SizedBox(
+                  height: 325,
+                  child: ListView.builder(
+                    itemCount: courseList.length,
+                    itemBuilder: (context, index) {
+                      final course = courseList[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => SelectedCourse(
+                                courseIndex: index,
+                              ),
+                            ),
+                          );
+                        },
+                        child: CourseItem(
+                          courseIndex: index,
+                          courseTitle: course.title,
+                          courseValue: course.price,
+                          facilitator: course.instructor,
+                          duration: course.duration,
+                        ),
+                      );
+                    },
+                  ));
+            },
           )
         ],
       ),
     );
   }
 }
+
+// ListView(
+//                   children: [
+                    // InkWell(
+                      // onTap: () {
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const SelectedCourse(),
+                      //     ),
+                      //   );
+                      // },
+                      // child: const CourseItem(
+                      //   courseTitle: 'Product Design v1.0',
+                      //   courseValue: '190',
+                      //   facilitator: 'Robertson Connie',
+                      //   totalHours: '14',
+                      // ),
+//                     ),
+//                     const CourseItem(
+//                       courseTitle: 'Java Development',
+//                       courseValue: '200',
+//                       facilitator: 'Nguyen Shane',
+//                       totalHours: '18',
+//                     ),
+//                     const CourseItem(
+//                       courseTitle: 'Visual Design',
+//                       courseValue: '250',
+//                       facilitator: 'Bert Pullman',
+//                       totalHours: '16',
+//                     ),
+//                   ],
+//                 ),
+//               );

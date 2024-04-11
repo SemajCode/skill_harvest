@@ -17,7 +17,7 @@ class CourseLesson extends ConsumerWidget {
   final String title;
   final String duration;
   final bool isLocked;
-  final String lessonNo;
+  final int lessonNo;
   final bool isCompleted;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +27,7 @@ class CourseLesson extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            lessonNo,
+            '$lessonNo',
             style: const TextStyle(
               fontSize: 24,
               color: Pallete.greyText,

@@ -16,7 +16,7 @@ class CourseInfo extends StatelessWidget {
   final String about;
   final String totalDuration;
   final String price;
-  final String noOfLessons;
+  final int noOfLessons;
 
   @override
   Widget build(BuildContext context) {

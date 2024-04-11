@@ -8,13 +8,15 @@ class CourseItem extends StatelessWidget {
     required this.courseTitle,
     required this.courseValue,
     required this.facilitator,
-    required this.totalHours,
+    required this.duration,
+    required this.courseIndex,
   });
 
   final String courseTitle;
   final String courseValue;
   final String facilitator;
-  final String totalHours;
+  final String duration;
+  final int courseIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class CourseItem extends StatelessWidget {
                         color: Pallete.onPurpleBackground,
                         borderRadius: BorderRadius.circular(4)),
                     child: Text(
-                      '$totalHours hours',
+                      duration,
                       style: const TextStyle(
                         color: Pallete.orangeColor,
                         fontSize: 10,

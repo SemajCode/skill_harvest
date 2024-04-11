@@ -6,7 +6,6 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/core/util/constants/constant.dart';
-import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/core/util/validators/validator.dart';
 import 'package:skillharvest/features/auth/controllers/login_controller.dart';
 import 'package:skillharvest/features/auth/screens/signup.dart';

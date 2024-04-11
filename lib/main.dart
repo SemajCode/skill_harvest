@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: Pallete.lightThemeMode,
       darkTheme: Pallete.darkThemeMode,
       themeMode: ThemeMode.light,
-      home: const UserCourses(),
+      home: const CourseScreen(),
     );
   }
 }

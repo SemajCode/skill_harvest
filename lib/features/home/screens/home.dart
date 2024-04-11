@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const Course(),
+                  builder: (context) => const CourseScreen(),
                 ),
               );
             },

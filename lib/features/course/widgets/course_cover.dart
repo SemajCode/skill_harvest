@@ -31,18 +31,26 @@ class CourseCover extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.visibility_off,
-                    size: 20,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 20,
+                    ),
                   ),
                   const Gap(8),
                   isBestSelling ? const PopularityTag() : const SizedBox(),
                   const Gap(18),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                   )
                 ],
