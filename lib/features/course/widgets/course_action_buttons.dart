@@ -5,7 +5,6 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
-import 'package:skillharvest/features/course/screens/user_courses.dart';
 
 class CourseActionButtons extends ConsumerStatefulWidget {
   const CourseActionButtons({super.key, required this.courseIndex});
@@ -29,11 +28,11 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
 
     ref.read(userCourseProvider.notifier).addCourse(paidCourse);
     setState(() {});
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const UserCourses(),
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => const UserCourses(),
+    //   ),
+    // );
   }
 
   @override

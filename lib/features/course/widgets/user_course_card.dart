@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/progress_indicator.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/models/course.dart';
 
 class UserCourseCard extends StatelessWidget {
   const UserCourseCard({
@@ -12,12 +12,14 @@ class UserCourseCard extends StatelessWidget {
     required this.coveredLessons,
     required this.color,
     required this.courseTitle,
+    required this.course,
   });
 
   final String courseTitle;
   final int totalLessons;
   final int coveredLessons;
   final Color color;
+  final Course course;
 
   @override
   Widget build(BuildContext context) {

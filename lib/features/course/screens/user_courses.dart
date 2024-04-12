@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,11 +15,12 @@ class UserCourses extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userCourse = ref.watch(userCourseProvider);
     final userCourseCards = userCourse
-        .map((e) => UserCourseCard(
-            totalLessons: e.noOfLessons,
-            coveredLessons: e.completedLessons,
+        .map((course) => UserCourseCard(
+            course: course,
+            totalLessons: course.noOfLessons,
+            coveredLessons: course.completedLessons,
             color: randomColor(),
-            courseTitle: e.title))
+            courseTitle: course.title))
         .toList();
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +44,8 @@ class UserCourses extends ConsumerWidget {
             const Gap(16),
             //UserCourseCards
             SizedBox(
-              height: pageHeight(context) * 0.76,
+              height: pageHeight(context) * 0.72,
+              width: pageWidth(context),
               child: SingleChildScrollView(
                 child: Wrap(
                   alignment: WrapAlignment.start,

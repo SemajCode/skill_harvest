@@ -44,7 +44,7 @@ class CourseItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                truncateText(courseTitle, 30, 2),
+                truncateText(courseTitle, 22, 2),
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
