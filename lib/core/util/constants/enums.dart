@@ -4,3 +4,9 @@ enum CategoryConst {
   marketing,
   finance,
 }
+
+enum CourseProgress {
+  completed,
+  inProgress,
+  notStarted,
+}

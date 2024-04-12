@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/screens/course.dart';
@@ -34,6 +33,7 @@ class Home extends StatelessWidget {
                   right: 12,
                   top: 70,
                   child: UserProgressCard(
+                    isHome: true,
                     coveredDailyDuration: 46,
                     indicatorValue: 0.6,
                     indicatorColor: Pallete.orangeColor,

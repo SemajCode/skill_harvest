@@ -3,24 +3,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/course/controllers/video_controller.dart';
+import 'package:skillharvest/features/course/providers/course_provider.dart';
 
 class CourseLesson extends ConsumerWidget {
   const CourseLesson({
     super.key,
-    required this.title,
-    required this.duration,
-    required this.isLocked,
-    required this.lessonNo,
-    required this.isCompleted,
+    required this.courseLessonIndex,
+    required this.courseIndex,
   });
 
-  final String title;
-  final String duration;
-  final bool isLocked;
-  final int lessonNo;
-  final bool isCompleted;
+  final int courseLessonIndex;
+  final int courseIndex;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final courseLesson =
+        ref.watch(courseProvider)[courseIndex].lessons[courseLessonIndex];
+    final String title = courseLesson.title;
+    final String duration = courseLesson.duration;
+    final bool isLocked = courseLesson.isLocked;
+    final int lessonNo = courseLesson.lessonNumber;
+    final bool isCompleted = courseLesson.isCompleted;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(

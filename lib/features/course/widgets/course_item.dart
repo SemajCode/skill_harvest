@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 
 class CourseItem extends StatelessWidget {
   const CourseItem({
@@ -38,12 +39,12 @@ class CourseItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          const Gap(40),
+          const Gap(24),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                courseTitle,
+                truncateText(courseTitle, 30, 2),
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),

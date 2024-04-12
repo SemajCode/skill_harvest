@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/features/course/providers/course_provider.dart';
 
-class CourseInfo extends StatelessWidget {
+class CourseInfo extends ConsumerWidget {
   const CourseInfo({
     super.key,
-    required this.title,
-    required this.about,
-    required this.totalDuration,
-    required this.price,
-    required this.noOfLessons,
+    required this.courseIndex,
   });
-
-  final String title;
-  final String about;
-  final String totalDuration;
-  final String price;
-  final int noOfLessons;
+  final int courseIndex;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final course = ref.watch(courseProvider)[courseIndex];
+    final String title = course.title;
+    final String about = course.description;
+    final String totalDuration = course.duration;
+    final String price = course.price;
+    final int noOfLessons = course.noOfLessons;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

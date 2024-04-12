@@ -5,6 +5,7 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
+import 'package:skillharvest/features/course/screens/user_courses.dart';
 
 class CourseActionButtons extends ConsumerStatefulWidget {
   const CourseActionButtons({super.key, required this.courseIndex});
@@ -27,12 +28,18 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
     final paidCourse = ref.read(courseProvider)[widget.courseIndex];
 
     ref.read(userCourseProvider.notifier).addCourse(paidCourse);
+    setState(() {});
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UserCourses(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool isFavorite =
-        ref.watch(courseProvider)[widget.courseIndex].isFavorite;
+    final isFavorite = ref.watch(courseProvider)[widget.courseIndex].isFavorite;
+    final isPaid = ref.watch(courseProvider)[widget.courseIndex].isPaid;
     return Positioned(
       bottom: 0,
       child: Container(
@@ -78,22 +85,39 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                     ),
             ),
             const Gap(12),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(pageWidth(context) * 0.6, 48),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    10,
-                  ),
-                ),
-                backgroundColor: Pallete.blueColor,
-                foregroundColor: Pallete.whiteColor,
-              ),
-              onPressed: buyCourse,
-              child: const Text(
-                'Buy Now',
-              ),
-            )
+            isPaid
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(pageWidth(context) * 0.6, 48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                      backgroundColor: Pallete.blueColor,
+                      foregroundColor: Pallete.whiteColor,
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Remove Course',
+                    ),
+                  )
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(pageWidth(context) * 0.6, 48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                      backgroundColor: Pallete.blueColor,
+                      foregroundColor: Pallete.whiteColor,
+                    ),
+                    onPressed: buyCourse,
+                    child: const Text(
+                      'Buy Now',
+                    ),
+                  )
           ],
         ),
       ),

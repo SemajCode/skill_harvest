@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
@@ -91,11 +90,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CourseInfo(
-                      title: selectedCourse.title,
-                      about: selectedCourse.description,
-                      totalDuration: selectedCourse.duration,
-                      price: selectedCourse.price,
-                      noOfLessons: selectedCourse.noOfLessons,
+                      courseIndex: widget.courseIndex,
                     ),
                     const Center(
                       child: Icon(
@@ -111,13 +106,9 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                         scrollDirection: Axis.vertical,
                         itemCount: selectedCourse.lessons.length,
                         itemBuilder: (context, index) {
-                          final courseLesson = selectedCourse.lessons[index];
                           return CourseLesson(
-                            title: courseLesson.title,
-                            duration: courseLesson.duration,
-                            isLocked: courseLesson.isLocked,
-                            lessonNo: courseLesson.lessonNumber,
-                            isCompleted: courseLesson.isCompleted,
+                            courseLessonIndex: index,
+                            courseIndex: widget.courseIndex,
                           );
                         },
                       ),

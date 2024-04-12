@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/progress_indicator.dart';
+import 'package:skillharvest/features/course/screens/user_courses.dart';
 
 class UserProgressCard extends StatelessWidget {
   const UserProgressCard({
@@ -9,12 +10,14 @@ class UserProgressCard extends StatelessWidget {
     required this.totalDailyDuration,
     required this.coveredDailyDuration,
     required this.indicatorValue,
+    required this.isHome,
   });
 
   final Color indicatorColor;
   final int totalDailyDuration;
   final int coveredDailyDuration;
   final double indicatorValue;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +29,32 @@ class UserProgressCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Learned today',
                   style: TextStyle(
                     color: Pallete.greyText,
                     fontSize: 12,
                   ),
                 ),
-                Text(
-                  'My courses',
-                  style: TextStyle(
-                    color: Pallete.blueColor,
-                    fontSize: 12,
-                  ),
-                ),
+                isHome
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const UserCourses(),
+                          ));
+                        },
+                        child: const Text(
+                          'My courses',
+                          style: TextStyle(
+                            color: Pallete.blueColor,
+                            fontSize: 12,
+                          ),
+                        ),
+                      )
+                    : const SizedBox()
               ],
             ),
             Text.rich(

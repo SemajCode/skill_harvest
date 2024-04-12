@@ -4,7 +4,17 @@ import 'package:skillharvest/models/course.dart';
 class UserCourseNotifier extends StateNotifier<List<Course>> {
   UserCourseNotifier(super.state);
   void addCourse(Course course) {
-    state = [course, ...state];
+    List<bool> list = [];
+    for (var element in state) {
+      if (element.title == course.title) {
+        list.add(true);
+      }
+    }
+    if (list.contains(true)) {
+      return;
+    } else {
+      state = [course, ...state];
+    }
   }
 }
 

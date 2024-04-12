@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/progress_indicator.dart';
@@ -34,6 +35,8 @@ class UserCourseCard extends StatelessWidget {
             children: [
               Text(
                 courseTitle,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
