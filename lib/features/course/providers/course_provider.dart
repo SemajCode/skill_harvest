@@ -6,12 +6,24 @@ import '../../../models/course_lesson.dart';
 
 class CourseNotifier extends StateNotifier<List<Course>> {
   CourseNotifier(super.state);
-  void star(course) {
+  void toggleFavorite(course) {
     var i = 0;
     for (var element in state) {
       if (element.title == course.title) {
         state[i] = state[i].copyWith(isFavorite: !state[i].isFavorite);
       } else {}
+      i += 1;
+    }
+  }
+
+  void toggleLessonCompletion(Course course, int lessonIndex) {
+    var i = 0;
+    for (var element in state) {
+      if (element.title == course.title) {
+        state[i].lessons[lessonIndex] = state[i]
+            .lessons[lessonIndex]
+            .copyWith(isCompleted: !state[i].lessons[lessonIndex].isCompleted);
+      }
       i += 1;
     }
   }

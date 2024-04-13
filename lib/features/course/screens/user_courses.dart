@@ -13,7 +13,7 @@ class UserCourses extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userCourse = ref.watch(userCourseProvider);
     Widget contents = userCourse.isEmpty
-        ? const Center(child: Text('You do not have any course yet'))
+        ? const Center(child: Text('You do not have any course yet!'))
         : GridView.builder(
             itemCount: userCourse.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -24,10 +24,7 @@ class UserCourses extends ConsumerWidget {
               return UserCourseCard(
                 courseIndex: index,
                 course: course,
-                totalLessons: course.noOfLessons,
-                coveredLessons: course.completedLessons,
                 color: randomColor(),
-                courseTitle: course.title,
               );
             },
           );

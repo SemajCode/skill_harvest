@@ -3,7 +3,7 @@ import 'package:skillharvest/models/course.dart';
 
 class UserCourseNotifier extends StateNotifier<List<Course>> {
   UserCourseNotifier(super.state);
-  void star(course) {
+  void toggleFavorite(course) {
     if (state.isNotEmpty) {
       var i = 0;
       for (var element in state) {
@@ -13,6 +13,31 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
         i += 1;
       }
     }
+  }
+
+  void toggleLessonCompletion(Course course, int lessonIndex) {
+    var i = 0;
+    for (var element in state) {
+      if (element.title == course.title) {
+        state[i].lessons[lessonIndex] = state[i]
+            .lessons[lessonIndex]
+            .copyWith(isCompleted: !state[i].lessons[lessonIndex].isCompleted);
+      }
+      i += 1;
+    }
+  }
+
+  int noOfCompletedLessons(
+    int courseIndex,
+  ) {
+    var lessons = state[courseIndex].lessons;
+    int i = 0;
+    for (var element in lessons) {
+      if (element.isCompleted == true) {
+        i += 1;
+      }
+    }
+    return i;
   }
 
   void addCourse(Course course) {

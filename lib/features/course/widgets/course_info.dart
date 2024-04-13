@@ -4,28 +4,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
-import 'package:skillharvest/features/course/providers/course_provider.dart';
-import 'package:skillharvest/features/course/providers/user_course_provider.dart';
+import 'package:skillharvest/models/course.dart';
 
 class CourseInfo extends ConsumerWidget {
   const CourseInfo({
     super.key,
-    required this.courseIndex,
-    required this.isUserCourse,
+    required this.course,
   });
-  final int courseIndex;
-  final bool isUserCourse;
+  final Course course;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final course = isUserCourse
-        ? ref.watch(userCourseProvider)[courseIndex]
-        : ref.watch(courseProvider)[courseIndex];
     final String title = course.title;
     final String about = course.description;
     final String totalDuration = course.duration;
     final String price = course.price;
-    final int noOfLessons = course.noOfLessons;
+    final int noOfLessons = course.lessons.length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

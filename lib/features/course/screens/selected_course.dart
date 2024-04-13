@@ -95,8 +95,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CourseInfo(
-                      isUserCourse: widget.isUserCourse,
-                      courseIndex: widget.courseIndex,
+                      course: selectedCourse,
                     ),
                     const Center(
                       child: Icon(
@@ -113,9 +112,8 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                         itemCount: selectedCourse.lessons.length,
                         itemBuilder: (context, index) {
                           return CourseLesson(
-                            isUserCourse: widget.isUserCourse,
+                            course: selectedCourse,
                             courseLessonIndex: index,
-                            courseIndex: widget.courseIndex,
                           );
                         },
                       ),

@@ -8,11 +8,12 @@ import 'package:skillharvest/features/course/providers/user_course_provider.dart
 import 'package:skillharvest/models/course.dart';
 
 class CourseActionButtons extends ConsumerStatefulWidget {
-  const CourseActionButtons(
-      {super.key,
-      required this.courseIndex,
-      required this.course,
-      required this.isUserCourse});
+  const CourseActionButtons({
+    super.key,
+    required this.courseIndex,
+    required this.course,
+    required this.isUserCourse,
+  });
   final int courseIndex;
   final Course course;
   final bool isUserCourse;
@@ -23,9 +24,9 @@ class CourseActionButtons extends ConsumerStatefulWidget {
 }
 
 class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
-  void starCourse(course) {
-    ref.read(courseProvider.notifier).star(course);
-    ref.read(userCourseProvider.notifier).star(course);
+  void toggleFavorite(course) {
+    ref.read(courseProvider.notifier).toggleFavorite(course);
+    ref.read(userCourseProvider.notifier).toggleFavorite(course);
 
     setState(() {});
   }
@@ -89,7 +90,7 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                 ),
               ),
               onPressed: () {
-                starCourse(widget.course);
+                toggleFavorite(widget.course);
               },
               child: isFavorite
                   ? const Icon(

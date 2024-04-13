@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/progress_indicator.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/models/course.dart';
 
-class UserCourseCard extends StatelessWidget {
+class UserCourseCard extends ConsumerWidget {
   const UserCourseCard({
     super.key,
-    required this.totalLessons,
-    required this.coveredLessons,
     required this.color,
-    required this.courseTitle,
     required this.course,
     required this.courseIndex,
   });
 
-  final String courseTitle;
-  final int totalLessons;
-  final int coveredLessons;
   final Color color;
   final Course course;
   final int courseIndex;
 
   @override
-  Widget build(BuildContext context) {
-    final double indicatorValue = calcProgress(coveredLessons, totalLessons);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final coveredLessons = ref
+        .watch(userCourseProvider.notifier)
+        .noOfCompletedLessons(courseIndex);
+    final double indicatorValue = calcProgress(
+      coveredLessons,
+      course.lessons.length,
+    );
 
     return SizedBox(
       height: 182,
@@ -39,7 +41,7 @@ class UserCourseCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                courseTitle,
+                course.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: const TextStyle(
@@ -57,9 +59,9 @@ class UserCourseCard extends StatelessWidget {
                 },
               ),
               const Gap(9),
-              const Text(
-                'Completed',
-                style: TextStyle(
+              Text(
+                getlessonProgress(coveredLessons, course.lessons.length),
+                style: const TextStyle(
                   fontSize: 12,
                 ),
               ),
@@ -68,7 +70,7 @@ class UserCourseCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '$coveredLessons/$totalLessons',
+                    '$coveredLessons/${course.lessons.length}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

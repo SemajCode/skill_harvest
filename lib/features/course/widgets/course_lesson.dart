@@ -5,24 +5,49 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/course/controllers/video_controller.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
+import 'package:skillharvest/models/course.dart';
 
-class CourseLesson extends ConsumerWidget {
+class CourseLesson extends ConsumerStatefulWidget {
   const CourseLesson({
     super.key,
     required this.courseLessonIndex,
-    required this.courseIndex,
-    required this.isUserCourse,
+    required this.course,
   });
 
   final int courseLessonIndex;
-  final bool isUserCourse;
-  final int courseIndex;
+  final Course course;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final courseLesson = isUserCourse
-        ? ref.watch(userCourseProvider)[courseIndex].lessons[courseLessonIndex]
-        : ref.watch(courseProvider)[courseIndex].lessons[courseLessonIndex];
+  ConsumerState<CourseLesson> createState() => _CourseLessonState();
+}
+
+class _CourseLessonState extends ConsumerState<CourseLesson> {
+  void toggleLessonCompletion(Course course, int lessonIndex) {
+    bool isLocked = course.lessons[lessonIndex].isLocked;
+    if (!isLocked) {
+      if (course.isPaid) {
+        ref
+            .read(userCourseProvider.notifier)
+            .toggleLessonCompletion(course, lessonIndex);
+        ref.read(courseProvider.notifier).toggleLessonCompletion(
+              course,
+              lessonIndex,
+            );
+        setState(() {});
+      }
+      ref.read(courseProvider.notifier).toggleLessonCompletion(
+            course,
+            lessonIndex,
+          );
+      setState(() {});
+    }
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    final courseLesson = widget.course.lessons[widget.courseLessonIndex];
     final String title = courseLesson.title;
     final String duration = courseLesson.duration;
     final bool isLocked = courseLesson.isLocked;
@@ -32,6 +57,7 @@ class CourseLesson extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             '$lessonNo',
@@ -51,6 +77,20 @@ class CourseLesson extends ConsumerWidget {
                 const Gap(4),
                 Row(
                   children: [
+                    SizedBox(
+                      width: 20,
+                      child: Checkbox(
+                        activeColor: Pallete.blueColor,
+                        value: isCompleted,
+                        onChanged: (value) {
+                          toggleLessonCompletion(
+                            widget.course,
+                            widget.courseLessonIndex,
+                          );
+                        },
+                      ),
+                    ),
+                    const Gap(8),
                     Text(
                       duration,
                       style: const TextStyle(
@@ -58,14 +98,6 @@ class CourseLesson extends ConsumerWidget {
                         color: Pallete.blueColor,
                       ),
                     ),
-                    const Gap(5),
-                    isCompleted
-                        ? const Icon(
-                            Icons.check_circle_rounded,
-                            size: 14,
-                            color: Pallete.blueColor,
-                          )
-                        : const SizedBox(),
                   ],
                 ),
               ],

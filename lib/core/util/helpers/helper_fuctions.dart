@@ -48,3 +48,12 @@ String truncateText(String text, int maxLength, maxWordLenth) {
     return '${text.substring(0, maxLength)}...';
   }
 }
+
+String getlessonProgress(int value1, value2) {
+  if (value1 == 0) {
+    return 'Not Started';
+  } else if ((value2 / value1) != 1) {
+    return 'In progress';
+  }
+  return 'Completed';
+}
