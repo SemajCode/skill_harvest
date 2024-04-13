@@ -41,6 +41,7 @@ class _CourseLessonState extends ConsumerState<CourseLesson> {
           );
       setState(() {});
     }
+    setState(() {});
   }
 
   @override
@@ -57,7 +58,7 @@ class _CourseLessonState extends ConsumerState<CourseLesson> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             '$lessonNo',
@@ -74,31 +75,33 @@ class _CourseLessonState extends ConsumerState<CourseLesson> {
                 Text(
                   title,
                 ),
-                const Gap(4),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                      child: Checkbox(
-                        activeColor: Pallete.blueColor,
-                        value: isCompleted,
-                        onChanged: (value) {
-                          toggleLessonCompletion(
-                            widget.course,
-                            widget.courseLessonIndex,
-                          );
-                        },
+                SizedBox(
+                  height: 26,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                        child: Checkbox(
+                          activeColor: Pallete.blueColor,
+                          value: isCompleted,
+                          onChanged: (value) {
+                            toggleLessonCompletion(
+                              widget.course,
+                              widget.courseLessonIndex,
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    const Gap(8),
-                    Text(
-                      duration,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Pallete.blueColor,
+                      const Gap(8),
+                      Text(
+                        duration,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Pallete.blueColor,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

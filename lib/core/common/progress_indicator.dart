@@ -64,7 +64,7 @@ class CourseProgressIndicator extends StatelessWidget {
             children: [
               Container(
                 height: 6,
-                color: Pallete.whiteColor,
+                color: Pallete.whiteColor.withOpacity(0.5),
               ),
               Container(
                 width: width,

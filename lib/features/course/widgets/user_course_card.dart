@@ -8,7 +8,7 @@ import 'package:skillharvest/features/course/providers/user_course_provider.dart
 import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/models/course.dart';
 
-class UserCourseCard extends ConsumerWidget {
+class UserCourseCard extends ConsumerStatefulWidget {
   const UserCourseCard({
     super.key,
     required this.color,
@@ -21,27 +21,32 @@ class UserCourseCard extends ConsumerWidget {
   final int courseIndex;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<UserCourseCard> createState() => _UserCourseCardState();
+}
+
+class _UserCourseCardState extends ConsumerState<UserCourseCard> {
+  @override
+  Widget build(BuildContext context) {
     final coveredLessons = ref
         .watch(userCourseProvider.notifier)
-        .noOfCompletedLessons(courseIndex);
+        .noOfCompletedLessons(widget.courseIndex);
     final double indicatorValue = calcProgress(
       coveredLessons,
-      course.lessons.length,
+      widget.course.lessons.length,
     );
 
-    return SizedBox(
-      height: 182,
-      width: pageWidth(context) * 0.455,
-      child: Card(
-        color: color.withOpacity(0.2),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
+    return Card(
+      color: widget.color.withOpacity(0.2),
+      child: Padding(
+        padding: const EdgeInsets.all(2),
+        child: SizedBox(
+          height: 190,
+          width: pageWidth(context) * 0.455,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                course.title,
+                widget.course.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: const TextStyle(
@@ -54,13 +59,13 @@ class UserCourseCard extends ConsumerWidget {
                 builder: (context, constraints) {
                   return CourseProgressIndicator(
                     value: indicatorValue,
-                    color: color,
+                    color: widget.color,
                   );
                 },
               ),
               const Gap(9),
               Text(
-                getlessonProgress(coveredLessons, course.lessons.length),
+                getlessonProgress(coveredLessons, widget.course.lessons.length),
                 style: const TextStyle(
                   fontSize: 12,
                 ),
@@ -70,7 +75,7 @@ class UserCourseCard extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '$coveredLessons/${course.lessons.length}',
+                    '$coveredLessons/${widget.course.lessons.length}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -78,18 +83,20 @@ class UserCourseCard extends ConsumerWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => SelectedCourse(
-                            courseIndex: courseIndex,
-                            isUserCourse: true,
-                          ),
-                        ),
-                      );
+                      Navigator.of(context)
+                          .push(
+                            MaterialPageRoute(
+                              builder: (context) => SelectedCourse(
+                                courseIndex: widget.courseIndex,
+                                isUserCourse: true,
+                              ),
+                            ),
+                          )
+                          .then((_) => {setState(() {})});
                     },
                     child: CircleAvatar(
                       maxRadius: 22,
-                      backgroundColor: color,
+                      backgroundColor: widget.color,
                       child: const Center(
                         child: Icon(
                           Icons.play_arrow_rounded,
