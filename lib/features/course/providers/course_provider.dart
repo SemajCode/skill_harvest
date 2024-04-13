@@ -6,10 +6,14 @@ import '../../../models/course_lesson.dart';
 
 class CourseNotifier extends StateNotifier<List<Course>> {
   CourseNotifier(super.state);
-
-  void star(courseIndex) {
-    state[courseIndex] =
-        state[courseIndex].copyWith(isFavorite: !state[courseIndex].isFavorite);
+  void star(course) {
+    var i = 0;
+    for (var element in state) {
+      if (element.title == course.title) {
+        state[i] = state[i].copyWith(isFavorite: !state[i].isFavorite);
+      } else {}
+      i += 1;
+    }
   }
 
   void buy(courseIndex) {

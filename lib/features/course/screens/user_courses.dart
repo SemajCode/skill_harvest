@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
@@ -14,14 +12,26 @@ class UserCourses extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userCourse = ref.watch(userCourseProvider);
-    final userCourseCards = userCourse
-        .map((course) => UserCourseCard(
-            course: course,
-            totalLessons: course.noOfLessons,
-            coveredLessons: course.completedLessons,
-            color: randomColor(),
-            courseTitle: course.title))
-        .toList();
+    Widget contents = userCourse.isEmpty
+        ? const Center(child: Text('You do not have any course yet'))
+        : GridView.builder(
+            itemCount: userCourse.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            itemBuilder: (context, index) {
+              final course = userCourse[index];
+              return UserCourseCard(
+                courseIndex: index,
+                course: course,
+                totalLessons: course.noOfLessons,
+                coveredLessons: course.completedLessons,
+                color: randomColor(),
+                courseTitle: course.title,
+              );
+            },
+          );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Courses'),
@@ -46,13 +56,7 @@ class UserCourses extends ConsumerWidget {
             SizedBox(
               height: pageHeight(context) * 0.72,
               width: pageWidth(context),
-              child: SingleChildScrollView(
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  direction: Axis.horizontal,
-                  children: userCourseCards,
-                ),
-              ),
+              child: contents,
             ),
           ],
         ),

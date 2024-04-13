@@ -5,17 +5,22 @@ import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
+import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 
 class CourseInfo extends ConsumerWidget {
   const CourseInfo({
     super.key,
     required this.courseIndex,
+    required this.isUserCourse,
   });
   final int courseIndex;
+  final bool isUserCourse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final course = ref.watch(courseProvider)[courseIndex];
+    final course = isUserCourse
+        ? ref.watch(userCourseProvider)[courseIndex]
+        : ref.watch(courseProvider)[courseIndex];
     final String title = course.title;
     final String about = course.description;
     final String totalDuration = course.duration;

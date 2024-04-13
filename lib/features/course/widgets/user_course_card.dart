@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/progress_indicator.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/models/course.dart';
 
 class UserCourseCard extends StatelessWidget {
@@ -13,6 +14,7 @@ class UserCourseCard extends StatelessWidget {
     required this.color,
     required this.courseTitle,
     required this.course,
+    required this.courseIndex,
   });
 
   final String courseTitle;
@@ -20,6 +22,7 @@ class UserCourseCard extends StatelessWidget {
   final int coveredLessons;
   final Color color;
   final Course course;
+  final int courseIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class UserCourseCard extends StatelessWidget {
       child: Card(
         color: color.withOpacity(0.2),
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -72,7 +75,16 @@ class UserCourseCard extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SelectedCourse(
+                            courseIndex: courseIndex,
+                            isUserCourse: true,
+                          ),
+                        ),
+                      );
+                    },
                     child: CircleAvatar(
                       maxRadius: 22,
                       backgroundColor: color,

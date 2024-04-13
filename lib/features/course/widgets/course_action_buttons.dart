@@ -5,10 +5,17 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
+import 'package:skillharvest/models/course.dart';
 
 class CourseActionButtons extends ConsumerStatefulWidget {
-  const CourseActionButtons({super.key, required this.courseIndex});
+  const CourseActionButtons(
+      {super.key,
+      required this.courseIndex,
+      required this.course,
+      required this.isUserCourse});
   final int courseIndex;
+  final Course course;
+  final bool isUserCourse;
 
   @override
   ConsumerState<CourseActionButtons> createState() =>
@@ -16,8 +23,10 @@ class CourseActionButtons extends ConsumerStatefulWidget {
 }
 
 class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
-  void starCourse() {
-    ref.read(courseProvider.notifier).star(widget.courseIndex);
+  void starCourse(course) {
+    ref.read(courseProvider.notifier).star(course);
+    ref.read(userCourseProvider.notifier).star(course);
+
     setState(() {});
   }
 
@@ -37,8 +46,15 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
 
   @override
   Widget build(BuildContext context) {
-    final isFavorite = ref.watch(courseProvider)[widget.courseIndex].isFavorite;
-    final isPaid = ref.watch(courseProvider)[widget.courseIndex].isPaid;
+    final bool isFavorite;
+    final bool isPaid;
+    if (widget.isUserCourse) {
+      isFavorite = ref.watch(userCourseProvider)[widget.courseIndex].isFavorite;
+      isPaid = ref.watch(userCourseProvider)[widget.courseIndex].isPaid;
+    } else {
+      isFavorite = ref.watch(courseProvider)[widget.courseIndex].isFavorite;
+      isPaid = ref.watch(courseProvider)[widget.courseIndex].isPaid;
+    }
     return Positioned(
       bottom: 0,
       child: Container(
@@ -72,7 +88,9 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                   ),
                 ),
               ),
-              onPressed: starCourse,
+              onPressed: () {
+                starCourse(widget.course);
+              },
               child: isFavorite
                   ? const Icon(
                       Icons.star,

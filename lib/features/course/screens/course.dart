@@ -20,7 +20,7 @@ class CourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: Pallete.whiteColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,6 +79,7 @@ class CourseScreen extends StatelessWidget {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => SelectedCourse(
+                                isUserCourse: false,
                                 courseIndex: index,
                               ),
                             ),

@@ -7,6 +7,7 @@ import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/controllers/video_controller.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
+import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 import 'package:skillharvest/features/course/widgets/course_action_buttons.dart';
 import 'package:skillharvest/features/course/widgets/course_cover.dart';
 import 'package:skillharvest/features/course/widgets/course_info.dart';
@@ -17,9 +18,11 @@ class SelectedCourse extends ConsumerStatefulWidget {
   const SelectedCourse({
     super.key,
     required this.courseIndex,
+    required this.isUserCourse,
   });
 
   final int courseIndex;
+  final bool isUserCourse;
 
   @override
   ConsumerState<SelectedCourse> createState() => _SelectedCourseState();
@@ -29,7 +32,9 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
   @override
   Widget build(BuildContext context) {
     bool isPlaying = ref.watch(playVideoProvider);
-    final selectedCourse = ref.watch(courseProvider)[widget.courseIndex];
+    final selectedCourse = widget.isUserCourse
+        ? ref.watch(userCourseProvider)[widget.courseIndex]
+        : ref.watch(courseProvider)[widget.courseIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -90,6 +95,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CourseInfo(
+                      isUserCourse: widget.isUserCourse,
                       courseIndex: widget.courseIndex,
                     ),
                     const Center(
@@ -107,18 +113,21 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                         itemCount: selectedCourse.lessons.length,
                         itemBuilder: (context, index) {
                           return CourseLesson(
+                            isUserCourse: widget.isUserCourse,
                             courseLessonIndex: index,
                             courseIndex: widget.courseIndex,
                           );
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
           ),
           CourseActionButtons(
+            isUserCourse: widget.isUserCourse,
+            course: selectedCourse,
             courseIndex: widget.courseIndex,
           )
         ],
