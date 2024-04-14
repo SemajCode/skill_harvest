@@ -43,7 +43,7 @@ class UserProgressCard extends StatelessWidget {
                     ? InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserCourses(),
+                            builder: (context) => UserCourses(),
                           ));
                         },
                         child: const Text(

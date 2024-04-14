@@ -38,78 +38,72 @@ class _UserCourseCardState extends ConsumerState<UserCourseCard> {
     return Card(
       color: widget.color.withOpacity(0.2),
       child: Padding(
-        padding: const EdgeInsets.all(2),
-        child: SizedBox(
-          height: 190,
-          width: pageWidth(context) * 0.455,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.course.title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+        padding: const EdgeInsets.all(8),
+        // height: 190,
+        // width: pageWidth(context) * 0.455,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.course.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              const Gap(20),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  return CourseProgressIndicator(
-                    value: indicatorValue,
-                    color: widget.color,
-                  );
-                },
+            ),
+            const Gap(20),
+            CourseProgressIndicator(
+              value: indicatorValue,
+              color: widget.color,
+            ),
+            const Gap(9),
+            Text(
+              getlessonProgress(coveredLessons, widget.course.lessons.length),
+              style: const TextStyle(
+                fontSize: 12,
               ),
-              const Gap(9),
-              Text(
-                getlessonProgress(coveredLessons, widget.course.lessons.length),
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-              const Gap(4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '$coveredLessons/${widget.course.lessons.length}',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+            ),
+            const Gap(4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '$coveredLessons/${widget.course.lessons.length}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(
-                            MaterialPageRoute(
-                              builder: (context) => SelectedCourse(
-                                courseIndex: widget.courseIndex,
-                                isUserCourse: true,
-                              ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => SelectedCourse(
+                              courseIndex: widget.courseIndex,
+                              isUserCourse: true,
                             ),
-                          )
-                          .then((_) => {setState(() {})});
-                    },
-                    child: CircleAvatar(
-                      maxRadius: 22,
-                      backgroundColor: widget.color,
-                      child: const Center(
-                        child: Icon(
-                          Icons.play_arrow_rounded,
-                          size: 28,
-                          color: Pallete.whiteColor,
-                        ),
+                          ),
+                        )
+                        .then((_) => {setState(() {})});
+                  },
+                  child: CircleAvatar(
+                    maxRadius: 22,
+                    backgroundColor: widget.color,
+                    child: const Center(
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        size: 28,
+                        color: Pallete.whiteColor,
                       ),
                     ),
-                  )
-                ],
-              ),
-            ],
-          ),
+                  ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
