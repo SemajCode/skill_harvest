@@ -4,14 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/constants/constant.dart';
-import 'package:skillharvest/core/util/constants/enums.dart';
 import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/screens/selected_course.dart';
 import 'package:skillharvest/features/course/widgets/choose_course.dart';
 import 'package:skillharvest/features/course/widgets/course_category.dart';
 import 'package:skillharvest/features/course/widgets/course_item.dart';
 import 'package:skillharvest/features/course/widgets/search_text_field.dart';
-// import 'package:skillharvest/core/util/constants/enums.dart';
+import 'package:skillharvest/models/course.dart';
 
 class CourseScreen extends StatelessWidget {
   const CourseScreen({super.key});
@@ -102,36 +101,3 @@ class CourseScreen extends StatelessWidget {
     );
   }
 }
-
-// ListView(
-//                   children: [
-                    // InkWell(
-                      // onTap: () {
-                      //   Navigator.of(context).push(
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const SelectedCourse(),
-                      //     ),
-                      //   );
-                      // },
-                      // child: const CourseItem(
-                      //   courseTitle: 'Product Design v1.0',
-                      //   courseValue: '190',
-                      //   facilitator: 'Robertson Connie',
-                      //   totalHours: '14',
-                      // ),
-//                     ),
-//                     const CourseItem(
-//                       courseTitle: 'Java Development',
-//                       courseValue: '200',
-//                       facilitator: 'Nguyen Shane',
-//                       totalHours: '18',
-//                     ),
-//                     const CourseItem(
-//                       courseTitle: 'Visual Design',
-//                       courseValue: '250',
-//                       facilitator: 'Bert Pullman',
-//                       totalHours: '16',
-//                     ),
-//                   ],
-//                 ),
-//               );

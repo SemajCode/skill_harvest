@@ -7,11 +7,24 @@ import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 import 'package:skillharvest/features/course/widgets/user_course_card.dart';
 
-class UserCourses extends ConsumerWidget {
-  final color = randomColor();
-  UserCourses({super.key});
+class UserCourses extends ConsumerStatefulWidget {
+  const UserCourses({super.key});
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<UserCourses> createState() => _UserCoursesState();
+}
+
+class _UserCoursesState extends ConsumerState<UserCourses> {
+  final color = randomColor();
+
+  // @override
+  // void initState() {
+  //   ref.read(userCourseProvider.notifier).loadUserCourses();
+  //   super.initState();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
     final userCourse = ref.watch(userCourseProvider);
     Widget contents = userCourse.isEmpty
         ? const Center(

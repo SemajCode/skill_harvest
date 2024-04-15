@@ -1,9 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+// import 'package:skillharvest/data/database.dart';
 import 'package:skillharvest/models/course.dart';
 
-class UserCourseNotifier extends StateNotifier<List<Course>> {
-  UserCourseNotifier(super.state);
-  void toggleFavorite(course) {
+// final userCourseDb = UserCourseDataBase();
+
+List<dynamic> userCourse = [];
+Future loadUserCourse() async {
+  final userCourseBox = await Hive.openBox('userCourseBox');
+
+  if (userCourseBox.containsKey('COURSELIST')) {
+    userCourse = userCourseBox.get('COURSELIST');
+  }
+}
+
+class UserCourseNotifier extends StateNotifier<List<dynamic>> {
+  UserCourseNotifier(super.state) {
+    loadUserCourse();
+  }
+
+  Future toggleFavorite(course) async {
     if (state.isNotEmpty) {
       var i = 0;
       for (var element in state) {
@@ -12,10 +28,12 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
         } else {}
         i += 1;
       }
+      final userCourseBox = await Hive.openBox('userCourseBox');
+      userCourseBox.put('COURSELIST', state);
     }
   }
 
-  void toggleLessonCompletion(Course course, int lessonIndex) {
+  Future toggleLessonCompletion(Course course, int lessonIndex) async {
     var i = 0;
     for (var element in state) {
       if (element.title == course.title) {
@@ -25,6 +43,8 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
       }
       i += 1;
     }
+    final userCourseBox = await Hive.openBox('userCourseBox');
+    userCourseBox.put('COURSELIST', state);
   }
 
   int noOfCompletedLessons(
@@ -40,7 +60,7 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
     return i;
   }
 
-  void addCourse(Course course) {
+  Future addCourse(Course course) async {
     List<bool> list = [];
     for (var element in state) {
       if (element.title == course.title) {
@@ -52,11 +72,13 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
     } else {
       state = [course, ...state];
     }
+    final userCourseBox = await Hive.openBox('userCourseBox');
+    userCourseBox.put('COURSELIST', state);
   }
 }
 
-final UserCourseNotifier _userCourseNotifier = UserCourseNotifier([]);
+final UserCourseNotifier _userCourseNotifier = UserCourseNotifier(userCourse);
 
 final userCourseProvider =
-    StateNotifierProvider<UserCourseNotifier, List<Course>>(
+    StateNotifierProvider<UserCourseNotifier, List<dynamic>>(
         (ref) => _userCourseNotifier);

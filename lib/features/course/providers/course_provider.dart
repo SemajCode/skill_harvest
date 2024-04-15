@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skillharvest/models/course.dart';
-import 'package:skillharvest/data/dummy_data.dart';
+import 'package:skillharvest/data/dummy_course_data.dart';
 
 import '../../../models/course_lesson.dart';
 

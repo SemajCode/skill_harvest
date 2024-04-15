@@ -1,6 +1,4 @@
-import 'package:skillharvest/core/util/constants/enums.dart';
 import 'package:skillharvest/models/course.dart';
-import 'package:skillharvest/models/course_lesson.dart';
 
 List<Course> dummyCourses = [
   Course(
