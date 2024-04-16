@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
-// import 'package:skillharvest/data/database.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/models/course.dart';
 
-final userCourseBox = Hive.box('userCourseBox');
+final userCourseBox = Hive.box(HiveConst.courseBox);
 List<dynamic> userCourse = loadUserCourse();
 List<dynamic> loadUserCourse() {
-  if (userCourseBox.containsKey('COURSELIST')) {
-    return userCourseBox.get('COURSELIST');
+  if (userCourseBox.containsKey(HiveConst.userCourseKey)) {
+    return userCourseBox.get(HiveConst.userCourseKey);
   } else {
     return [];
   }
@@ -25,8 +25,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
         } else {}
         i += 1;
       }
-      // final userCourseBox = await Hive.openBox('userCourseBox');
-      userCourseBox.put('COURSELIST', state);
+      userCourseBox.put(HiveConst.userCourseKey, state);
     }
   }
 
@@ -40,8 +39,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
       }
       i += 1;
     }
-    // final userCourseBox = await Hive.openBox('userCourseBox');
-    userCourseBox.put('COURSELIST', state);
+    userCourseBox.put(HiveConst.userCourseKey, state);
   }
 
   int noOfCompletedLessons(
@@ -69,10 +67,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     } else {
       state = [course, ...state];
     }
-    // final userCourseBox = await Hive.openBox('userCourseBox');
-    userCourseBox.put('COURSELIST', state);
-    List courses = userCourseBox.get('COURSELIST');
-    print(courses.length);
+    userCourseBox.put(HiveConst.userCourseKey, state);
   }
 }
 

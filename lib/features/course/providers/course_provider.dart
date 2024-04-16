@@ -1,10 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/models/course.dart';
 import 'package:skillharvest/data/dummy_course_data.dart';
 
-import '../../../models/course_lesson.dart';
+final courseBox = Hive.box(HiveConst.courseBox);
+List<dynamic> courseList = loadCourses();
+List<dynamic> loadCourses() {
+  if (courseBox.containsKey(HiveConst.courseKey) == false) {
+    courseBox.put(HiveConst.courseKey, dummyCourses);
+  }
+  return courseBox.get(HiveConst.courseKey);
+}
 
-class CourseNotifier extends StateNotifier<List<Course>> {
+class CourseNotifier extends StateNotifier<List<dynamic>> {
   CourseNotifier(super.state);
   void toggleFavorite(course) {
     var i = 0;
@@ -14,6 +23,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
       } else {}
       i += 1;
     }
+    courseBox.put(HiveConst.courseKey, state);
   }
 
   void toggleLessonCompletion(Course course, int lessonIndex) {
@@ -37,10 +47,11 @@ class CourseNotifier extends StateNotifier<List<Course>> {
       lessons: newLessonList,
       isPaid: true,
     );
+    courseBox.put(HiveConst.courseKey, state);
   }
 }
 
-final CourseNotifier _courseNotifier = CourseNotifier(dummyCourses);
+final CourseNotifier _courseNotifier = CourseNotifier(courseList);
 
-final courseProvider = StateNotifierProvider<CourseNotifier, List<Course>>(
+final courseProvider = StateNotifierProvider<CourseNotifier, List<dynamic>>(
     (ref) => _courseNotifier);

@@ -13,7 +13,7 @@ void main() async {
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(CourseLessonAdapter());
   Hive.registerAdapter(CategoryConstAdapter());
-  await Hive.openBox('userCourseBox');
+  await Hive.openBox('courseBox');
 
   runApp(
     const ProviderScope(

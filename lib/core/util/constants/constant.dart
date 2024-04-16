@@ -16,3 +16,9 @@ class AppImage {
 
   //selected_course.svg
 }
+
+class HiveConst {
+  static const userCourseKey = 'userCourseList';
+  static const courseKey = 'courseList';
+  static const courseBox = 'courseBox';
+}
