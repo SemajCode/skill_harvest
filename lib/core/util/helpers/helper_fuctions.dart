@@ -25,17 +25,16 @@ void showSnackBar(BuildContext context, String message) {
   );
 }
 
-Color randomColor() {
-  List<Color> color = [
-    Pallete.blueColor,
-    Pallete.orangeColor,
-    Pallete.purpleColor,
-    Colors.red,
-  ];
-
-  Random random = Random();
-  int randomColorIndex = random.nextInt(color.length);
-  return color[randomColorIndex];
+Color progressColor(double value) {
+  if (value <= 0.3) {
+    return Colors.red;
+  } else if (value <= 0.6) {
+    return Pallete.orangeColor;
+  } else if (value <= 0.9) {
+    return Pallete.purpleColor;
+  } else {
+    return Pallete.blueColor;
+  }
 }
 
 String truncateText(String text, int maxLength, maxWordLenth) {

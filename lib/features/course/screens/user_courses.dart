@@ -15,8 +15,6 @@ class UserCourses extends ConsumerStatefulWidget {
 }
 
 class _UserCoursesState extends ConsumerState<UserCourses> {
-  final color = randomColor();
-
   // @override
   // void initState() {
   //   ref.read(userCourseProvider.notifier).loadUserCourses();
@@ -40,7 +38,6 @@ class _UserCoursesState extends ConsumerState<UserCourses> {
               return UserCourseCard(
                 courseIndex: index,
                 course: course,
-                color: color,
               );
             },
           );

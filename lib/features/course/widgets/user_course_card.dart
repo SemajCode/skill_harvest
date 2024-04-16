@@ -11,12 +11,10 @@ import 'package:skillharvest/models/course.dart';
 class UserCourseCard extends ConsumerStatefulWidget {
   const UserCourseCard({
     super.key,
-    required this.color,
     required this.course,
     required this.courseIndex,
   });
 
-  final Color color;
   final Course course;
   final int courseIndex;
 
@@ -34,9 +32,10 @@ class _UserCourseCardState extends ConsumerState<UserCourseCard> {
       coveredLessons,
       widget.course.lessons.length,
     );
+    Color color = progressColor(indicatorValue);
 
     return Card(
-      color: widget.color.withOpacity(0.2),
+      color: color.withOpacity(0.2),
       child: Padding(
         padding: const EdgeInsets.all(8),
         // height: 190,
@@ -56,7 +55,7 @@ class _UserCourseCardState extends ConsumerState<UserCourseCard> {
             const Gap(20),
             CourseProgressIndicator(
               value: indicatorValue,
-              color: widget.color,
+              color: color,
             ),
             const Gap(9),
             Text(
@@ -91,7 +90,7 @@ class _UserCourseCardState extends ConsumerState<UserCourseCard> {
                   },
                   child: CircleAvatar(
                     maxRadius: 22,
-                    backgroundColor: widget.color,
+                    backgroundColor: color,
                     child: const Center(
                       child: Icon(
                         Icons.play_arrow_rounded,

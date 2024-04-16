@@ -7,12 +7,13 @@ import 'package:skillharvest/features/home/screens/home.dart';
 import 'package:skillharvest/models/course.dart';
 
 void main() async {
-  final appDocumentsDirectory =
-      await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDocumentsDirectory.path);
+  WidgetsFlutterBinding.ensureInitialized();
+  final document = await path_provider.getApplicationDocumentsDirectory();
+  await Hive.initFlutter(document.path);
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(CourseLessonAdapter());
   Hive.registerAdapter(CategoryConstAdapter());
+  await Hive.openBox('userCourseBox');
 
   runApp(
     const ProviderScope(

@@ -3,23 +3,20 @@ import 'package:hive/hive.dart';
 // import 'package:skillharvest/data/database.dart';
 import 'package:skillharvest/models/course.dart';
 
-// final userCourseDb = UserCourseDataBase();
-
-List<dynamic> userCourse = [];
-Future loadUserCourse() async {
-  final userCourseBox = await Hive.openBox('userCourseBox');
-
+final userCourseBox = Hive.box('userCourseBox');
+List<dynamic> userCourse = loadUserCourse();
+List<dynamic> loadUserCourse() {
   if (userCourseBox.containsKey('COURSELIST')) {
-    userCourse = userCourseBox.get('COURSELIST');
+    return userCourseBox.get('COURSELIST');
+  } else {
+    return [];
   }
 }
 
 class UserCourseNotifier extends StateNotifier<List<dynamic>> {
-  UserCourseNotifier(super.state) {
-    loadUserCourse();
-  }
+  UserCourseNotifier(super.state);
 
-  Future toggleFavorite(course) async {
+  void toggleFavorite(course) {
     if (state.isNotEmpty) {
       var i = 0;
       for (var element in state) {
@@ -28,12 +25,12 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
         } else {}
         i += 1;
       }
-      final userCourseBox = await Hive.openBox('userCourseBox');
+      // final userCourseBox = await Hive.openBox('userCourseBox');
       userCourseBox.put('COURSELIST', state);
     }
   }
 
-  Future toggleLessonCompletion(Course course, int lessonIndex) async {
+  void toggleLessonCompletion(Course course, int lessonIndex) {
     var i = 0;
     for (var element in state) {
       if (element.title == course.title) {
@@ -43,7 +40,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
       }
       i += 1;
     }
-    final userCourseBox = await Hive.openBox('userCourseBox');
+    // final userCourseBox = await Hive.openBox('userCourseBox');
     userCourseBox.put('COURSELIST', state);
   }
 
@@ -60,7 +57,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     return i;
   }
 
-  Future addCourse(Course course) async {
+  void addCourse(Course course) {
     List<bool> list = [];
     for (var element in state) {
       if (element.title == course.title) {
@@ -72,8 +69,10 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     } else {
       state = [course, ...state];
     }
-    final userCourseBox = await Hive.openBox('userCourseBox');
+    // final userCourseBox = await Hive.openBox('userCourseBox');
     userCourseBox.put('COURSELIST', state);
+    List courses = userCourseBox.get('COURSELIST');
+    print(courses.length);
   }
 }
 
