@@ -28,7 +28,7 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
     ref.read(courseProvider.notifier).toggleFavorite(course);
     ref.read(userCourseProvider.notifier).toggleFavorite(course);
 
-    setState(() {});
+    // setState(() {});
   }
 
   void buyCourse() {
@@ -38,11 +38,16 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
 
     ref.read(userCourseProvider.notifier).addCourse(paidCourse);
     setState(() {});
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (context) => const UserCourses(),
-    //   ),
-    // );
+  }
+
+  void removeCourse(Course course, bool isUserCourse) {
+    ref.read(courseProvider.notifier).removeCourse(course);
+    ref.read(userCourseProvider.notifier).removeCourse(course);
+    if (isUserCourse) {
+      Navigator.pop(context);
+    } else {
+      setState(() {});
+    }
   }
 
   @override
@@ -115,7 +120,9 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
                       backgroundColor: Pallete.blueColor,
                       foregroundColor: Pallete.whiteColor,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      removeCourse(widget.course, widget.isUserCourse);
+                    },
                     child: const Text(
                       'Remove Course',
                     ),

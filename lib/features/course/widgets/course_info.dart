@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/models/course.dart';
 
-class CourseInfo extends ConsumerWidget {
+class CourseInfo extends StatelessWidget {
   const CourseInfo({
     super.key,
     required this.course,
@@ -14,7 +13,7 @@ class CourseInfo extends ConsumerWidget {
   final Course course;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final String title = course.title;
     final String about = course.description;
     final String totalDuration = course.duration;

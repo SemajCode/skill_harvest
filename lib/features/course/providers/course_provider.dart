@@ -36,6 +36,7 @@ class CourseNotifier extends StateNotifier<List<dynamic>> {
       }
       i += 1;
     }
+    courseBox.put(HiveConst.courseKey, state);
   }
 
   void buy(courseIndex) {
@@ -47,6 +48,25 @@ class CourseNotifier extends StateNotifier<List<dynamic>> {
       lessons: newLessonList,
       isPaid: true,
     );
+    courseBox.put(HiveConst.courseKey, state);
+  }
+
+  void removeCourse(Course course) {
+    final isFav = course.isFavorite;
+    var courseIndex = 0;
+    var dummyCourseIndex = 0;
+    for (var element in state) {
+      if (element.title == course.title) {
+        courseIndex = state.indexOf(element);
+      }
+    }
+    for (var element in dummyCourses) {
+      if (element.title == course.title) {
+        dummyCourseIndex = dummyCourses.indexOf(element);
+      }
+    }
+    state[courseIndex] =
+        dummyCourses[dummyCourseIndex].copyWith(isFavorite: isFav);
     courseBox.put(HiveConst.courseKey, state);
   }
 }

@@ -7,8 +7,8 @@ import 'package:skillharvest/features/course/providers/course_provider.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 import 'package:skillharvest/models/course.dart';
 
-class CourseLesson extends ConsumerStatefulWidget {
-  const CourseLesson({
+class CourseLessonWidget extends ConsumerStatefulWidget {
+  const CourseLessonWidget({
     super.key,
     required this.courseLessonIndex,
     required this.course,
@@ -18,10 +18,10 @@ class CourseLesson extends ConsumerStatefulWidget {
   final Course course;
 
   @override
-  ConsumerState<CourseLesson> createState() => _CourseLessonState();
+  ConsumerState<CourseLessonWidget> createState() => _CourseLessonState();
 }
 
-class _CourseLessonState extends ConsumerState<CourseLesson> {
+class _CourseLessonState extends ConsumerState<CourseLessonWidget> {
   void toggleLessonCompletion(Course course, int lessonIndex) {
     bool isLocked = course.lessons[lessonIndex].isLocked;
     if (!isLocked) {
@@ -45,9 +45,9 @@ class _CourseLessonState extends ConsumerState<CourseLesson> {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
+    ref.watch(courseProvider);
+    ref.watch(userCourseProvider);
     final courseLesson = widget.course.lessons[widget.courseLessonIndex];
     final String title = courseLesson.title;
     final String duration = courseLesson.duration;

@@ -13,6 +13,7 @@ import 'package:skillharvest/features/course/widgets/course_cover.dart';
 import 'package:skillharvest/features/course/widgets/course_info.dart';
 import 'package:skillharvest/features/course/widgets/course_lesson.dart';
 import 'package:skillharvest/features/course/widgets/lessons_video_player.dart';
+import 'package:skillharvest/models/course.dart';
 
 class SelectedCourse extends ConsumerStatefulWidget {
   const SelectedCourse({
@@ -32,7 +33,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
   @override
   Widget build(BuildContext context) {
     bool isPlaying = ref.watch(playVideoProvider);
-    final selectedCourse = widget.isUserCourse
+    final Course selectedCourse = widget.isUserCourse
         ? ref.watch(userCourseProvider)[widget.courseIndex]
         : ref.watch(courseProvider)[widget.courseIndex];
 
@@ -111,7 +112,7 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                         scrollDirection: Axis.vertical,
                         itemCount: selectedCourse.lessons.length,
                         itemBuilder: (context, index) {
-                          return CourseLesson(
+                          return CourseLessonWidget(
                             course: selectedCourse,
                             courseLessonIndex: index,
                           );
