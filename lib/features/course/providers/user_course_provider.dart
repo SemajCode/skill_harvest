@@ -4,16 +4,16 @@ import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/models/course.dart';
 
 final userCourseBox = Hive.box(HiveConst.courseBox);
-List<dynamic> userCourse = loadUserCourse();
-List<dynamic> loadUserCourse() {
+List<Course> userCourse = loadUserCourse();
+List<Course> loadUserCourse() {
   if (userCourseBox.containsKey(HiveConst.userCourseKey)) {
-    return userCourseBox.get(HiveConst.userCourseKey);
+    return userCourseBox.get(HiveConst.userCourseKey).cast<Course>();
   } else {
     return [];
   }
 }
 
-class UserCourseNotifier extends StateNotifier<List<dynamic>> {
+class UserCourseNotifier extends StateNotifier<List<Course>> {
   UserCourseNotifier(super.state);
 
   void toggleFavorite(course) {
@@ -42,9 +42,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     userCourseBox.put(HiveConst.userCourseKey, state);
   }
 
-  int noOfCompletedLessons(
-    int courseIndex,
-  ) {
+  int noOfCompletedLessons(int courseIndex) {
     var lessons = state[courseIndex].lessons;
     int i = 0;
     for (var element in lessons) {
@@ -71,7 +69,7 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
   }
 
   void removeCourse(Course course) {
-    List newState = [];
+    List<Course> newState = [];
     for (var element in state) {
       if (element.title != course.title) {
         newState = [element, ...newState];
@@ -80,10 +78,23 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     state = newState;
     userCourseBox.put(HiveConst.userCourseKey, state);
   }
+
+  List<Course> getCoursePlans() {
+    List<Course> learningPlan = [];
+    var i = 0;
+    for (var course in state) {
+      if (i <= 3) {
+        learningPlan = [course, ...learningPlan];
+      }
+      i++;
+    }
+
+    return learningPlan;
+  }
 }
 
 final UserCourseNotifier _userCourseNotifier = UserCourseNotifier(userCourse);
 
 final userCourseProvider =
-    StateNotifierProvider<UserCourseNotifier, List<dynamic>>(
+    StateNotifierProvider<UserCourseNotifier, List<Course>>(
         (ref) => _userCourseNotifier);

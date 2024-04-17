@@ -2,8 +2,8 @@ import 'package:hive/hive.dart';
 
 part 'course.g.dart';
 
-@HiveType(typeId: 0)
-class Course {
+@HiveType(typeId: 0, adapterName: 'CourseAdapter')
+class Course extends HiveObject {
   Course({
     required this.title,
     required this.price,
@@ -74,8 +74,8 @@ class Course {
   }
 }
 
-@HiveType(typeId: 1)
-class CourseLesson {
+@HiveType(typeId: 1, adapterName: 'CourseLessonAdapter')
+class CourseLesson extends HiveObject {
   CourseLesson({
     required this.title,
     required this.lessonNumber,
@@ -111,7 +111,7 @@ class CourseLesson {
   }
 }
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 2, adapterName: 'CategoryConstAdapter')
 enum CategoryConst {
   @HiveField(0)
   coding,

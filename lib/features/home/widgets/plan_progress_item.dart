@@ -19,7 +19,7 @@ class PlanProgressItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final double progressValue = calcProgress(coveredVideos, totalVideos);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -36,7 +36,13 @@ class PlanProgressItem extends StatelessWidget {
                 ),
               ),
               const Gap(8),
-              Text(title),
+              SizedBox(
+                width: pageWidth(context) * 0.65,
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
           Text.rich(

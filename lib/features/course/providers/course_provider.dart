@@ -5,15 +5,15 @@ import 'package:skillharvest/models/course.dart';
 import 'package:skillharvest/data/dummy_course_data.dart';
 
 final courseBox = Hive.box(HiveConst.courseBox);
-List<dynamic> courseList = loadCourses();
-List<dynamic> loadCourses() {
+List<Course> courseList = loadCourses();
+List<Course> loadCourses() {
   if (courseBox.containsKey(HiveConst.courseKey) == false) {
     courseBox.put(HiveConst.courseKey, dummyCourses);
   }
-  return courseBox.get(HiveConst.courseKey);
+  return courseBox.get(HiveConst.courseKey).cast<Course>();
 }
 
-class CourseNotifier extends StateNotifier<List<dynamic>> {
+class CourseNotifier extends StateNotifier<List<Course>> {
   CourseNotifier(super.state);
   void toggleFavorite(course) {
     var i = 0;
@@ -73,5 +73,5 @@ class CourseNotifier extends StateNotifier<List<dynamic>> {
 
 final CourseNotifier _courseNotifier = CourseNotifier(courseList);
 
-final courseProvider = StateNotifierProvider<CourseNotifier, List<dynamic>>(
+final courseProvider = StateNotifierProvider<CourseNotifier, List<Course>>(
     (ref) => _courseNotifier);
