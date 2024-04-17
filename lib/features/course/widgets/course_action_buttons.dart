@@ -28,7 +28,7 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
     ref.read(courseProvider.notifier).toggleFavorite(course);
     ref.read(userCourseProvider.notifier).toggleFavorite(course);
 
-    // setState(() {});
+    setState(() {});
   }
 
   void buyCourse() {

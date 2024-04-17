@@ -80,20 +80,6 @@ class UserCourseNotifier extends StateNotifier<List<dynamic>> {
     state = newState;
     userCourseBox.put(HiveConst.userCourseKey, state);
   }
-
-  bool isAvailable(Course course, int courseIndex) {
-    int elementIndex = 0;
-    bool isAvailable = false;
-    for (var element in state) {
-      if (element.title == course.title) {
-        elementIndex = state.indexOf(element);
-      }
-    }
-    if (elementIndex == courseIndex) {
-      isAvailable = true;
-    }
-    return isAvailable;
-  }
 }
 
 final UserCourseNotifier _userCourseNotifier = UserCourseNotifier(userCourse);

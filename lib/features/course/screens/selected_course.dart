@@ -98,13 +98,20 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                     CourseInfo(
                       course: selectedCourse,
                     ),
-                    const Center(
-                      child: Icon(
-                        Icons.visibility_off,
-                        size: 14,
+                    const Gap(10),
+                    Center(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {});
+                        },
+                        child: const Icon(
+                          Icons.refresh,
+                          color: Pallete.blueColor,
+                          size: 18,
+                        ),
                       ),
                     ),
-                    const Gap(16),
+                    const Gap(12),
                     SizedBox(
                       height: 234,
                       width: pageWidth(context),

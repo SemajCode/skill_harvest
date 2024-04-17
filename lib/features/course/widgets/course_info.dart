@@ -74,7 +74,6 @@ class CourseInfo extends StatelessWidget {
             fontSize: 12,
           ),
         ),
-        const Gap(16),
       ],
     );
   }
