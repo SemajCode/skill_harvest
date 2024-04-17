@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/user_progress_card.dart';
+import 'package:skillharvest/core/util/constants/constant.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/features/course/providers/user_course_provider.dart';
 import 'package:skillharvest/features/course/widgets/user_course_card.dart';
@@ -25,8 +27,23 @@ class _UserCoursesState extends ConsumerState<UserCourses> {
   Widget build(BuildContext context) {
     final userCourse = ref.watch(userCourseProvider);
     Widget contents = userCourse.isEmpty
-        ? const Center(
-            child: Text('You do not have any course yet!'),
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(AppImage.noData, height: 160),
+                const Gap(8),
+                const Text(
+                  'No Course',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                const Gap(12),
+                const Text('You do not have any course yet!'),
+              ],
+            ),
           )
         : GridView.builder(
             itemCount: userCourse.length,

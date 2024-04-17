@@ -13,6 +13,7 @@ class AppImage {
   static const selectedCourse = 'assets/svgs/selected_course.svg';
   static const masterCard = 'assets/svgs/mastercard.svg';
   static const cardChip = 'assets/svgs/card_chip.svg';
+  static const noData = 'assets/svgs/no_data.svg';
 
   //selected_course.svg
 }
