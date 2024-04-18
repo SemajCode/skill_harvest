@@ -25,7 +25,7 @@ class AuthButtons extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-              minimumSize: const Size(150, 50),
+              minimumSize: const Size(140, 50),
               backgroundColor: Pallete.blueColor,
               foregroundColor: Pallete.whiteColor,
               shape: RoundedRectangleBorder(
@@ -34,6 +34,7 @@ class AuthButtons extends StatelessWidget {
             ),
             child: const Text('Sign up'),
           ),
+          const Spacer(),
           OutlinedButton(
             onPressed: () {
               Navigator.of(context).push(
@@ -43,7 +44,7 @@ class AuthButtons extends StatelessWidget {
               );
             },
             style: OutlinedButton.styleFrom(
-              minimumSize: const Size(150, 50),
+              minimumSize: const Size(140, 50),
               backgroundColor: Pallete.whiteColor,
               foregroundColor: Pallete.blueColor,
               shape: RoundedRectangleBorder(
