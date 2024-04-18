@@ -1,8 +1,10 @@
 class AppConstants {}
 
 class AppImage {
+  static const onboarding1 = 'assets/svgs/onboarding1.svg';
+  static const onboarding2 = 'assets/svgs/onboarding2.svg';
+  static const onboarding3 = 'assets/svgs/login_image.svg';
   static const conWithPhone = 'assets/svgs/continue_with_phone.svg';
-  static const loginImage = 'assets/svgs/login_image.svg';
   static const facebookSvg = 'assets/svgs/icon-facebook.svg';
   static const googleSvg = 'assets/svgs/icon-google.svg';
   static const avatarSvg = 'assets/svgs/avatar.svg';
