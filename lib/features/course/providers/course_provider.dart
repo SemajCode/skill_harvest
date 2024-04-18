@@ -23,6 +23,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
       } else {}
       i += 1;
     }
+    state = [...state];
     courseBox.put(HiveConst.courseKey, state);
   }
 
@@ -36,6 +37,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
       }
       i += 1;
     }
+    state = [...state];
     courseBox.put(HiveConst.courseKey, state);
   }
 
@@ -48,6 +50,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
       lessons: newLessonList,
       isPaid: true,
     );
+    state = [...state];
     courseBox.put(HiveConst.courseKey, state);
   }
 
@@ -67,6 +70,7 @@ class CourseNotifier extends StateNotifier<List<Course>> {
     }
     state[courseIndex] =
         dummyCourses[dummyCourseIndex].copyWith(isFavorite: isFav);
+    state = [...state];
     courseBox.put(HiveConst.courseKey, state);
   }
 }

@@ -99,16 +99,11 @@ class _SelectedCourseState extends ConsumerState<SelectedCourse> {
                       course: selectedCourse,
                     ),
                     const Gap(10),
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {});
-                        },
-                        child: const Icon(
-                          Icons.refresh,
-                          color: Pallete.blueColor,
-                          size: 18,
-                        ),
+                    const Center(
+                      child: Icon(
+                        Icons.refresh,
+                        color: Pallete.blueColor,
+                        size: 18,
                       ),
                     ),
                     const Gap(12),

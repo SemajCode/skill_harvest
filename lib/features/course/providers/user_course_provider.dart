@@ -25,6 +25,7 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
         } else {}
         i += 1;
       }
+      state = [...state];
       userCourseBox.put(HiveConst.userCourseKey, state);
     }
   }
@@ -39,6 +40,7 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
       }
       i += 1;
     }
+    state = [...state];
     userCourseBox.put(HiveConst.userCourseKey, state);
   }
 
@@ -65,6 +67,7 @@ class UserCourseNotifier extends StateNotifier<List<Course>> {
     } else {
       state = [course, ...state];
     }
+    state = [...state];
     userCourseBox.put(HiveConst.userCourseKey, state);
   }
 

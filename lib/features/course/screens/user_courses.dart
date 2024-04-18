@@ -17,12 +17,6 @@ class UserCourses extends ConsumerStatefulWidget {
 }
 
 class _UserCoursesState extends ConsumerState<UserCourses> {
-  // @override
-  // void initState() {
-  //   ref.read(userCourseProvider.notifier).loadUserCourses();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final userCourse = ref.watch(userCourseProvider);
@@ -32,7 +26,6 @@ class _UserCoursesState extends ConsumerState<UserCourses> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(AppImage.noData, height: 160),
-                const Gap(8),
                 const Text(
                   'No Course',
                   style: TextStyle(
@@ -40,7 +33,7 @@ class _UserCoursesState extends ConsumerState<UserCourses> {
                     fontSize: 18,
                   ),
                 ),
-                const Gap(12),
+                const Gap(8),
                 const Text('You do not have any course yet!'),
               ],
             ),
