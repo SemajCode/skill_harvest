@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/data/onboard_data.dart';
 import 'package:skillharvest/features/onboarding/widgets/auth_buttons.dart';

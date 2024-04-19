@@ -1,42 +1,67 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/core/common/buttons.dart';
 import 'package:skillharvest/core/common/signup_checkbox.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
+import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/core/util/validators/validator.dart';
+import 'package:skillharvest/features/auth/controllers/signup_controller.dart';
 import 'package:skillharvest/features/auth/screens/login.dart';
-import 'package:skillharvest/features/auth/screens/phone_login.dart';
+import 'package:skillharvest/features/home/screens/home.dart';
 
-class Signup extends StatefulWidget {
+class Signup extends ConsumerStatefulWidget {
   const Signup({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  ConsumerState<Signup> createState() => _SignupState();
 }
 
-class _SignupState extends State<Signup> {
-  final TextEditingController textController = TextEditingController();
+class _SignupState extends ConsumerState<Signup> {
+  final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
-    textController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
-  void createAccount() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const PhoneLogin(),
-      ),
-    );
+  Future<void> createAccount(bool acceptTerms) async {
+    final emailValidator = Validator.validateEmail(emailController.text);
+    final passValidator = Validator.validatePassword(passwordController.text);
+    if (emailController.text.isEmpty && passwordController.text.isEmpty) {
+      showSnackBar(context, 'PLEASE FILL IN ALL FIELDS');
+    }
+    if (emailValidator == null && passValidator == null) {
+      if (acceptTerms == false) {
+        // ignore: use_build_context_synchronously
+        showSnackBar(context, 'PLEASE AGREE TO TERMS TO PROCEED');
+      } else {
+        await ref
+            .read(signUpProvider)
+            .signUp(emailController.text, passwordController.text);
+
+        if (context.mounted) {
+          // ignore: use_build_context_synchronously
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          );
+        }
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isBusy = ref.watch(signUpProvider).isBusy;
+    bool acceptTerms = ref.watch(signUpProvider).acceptTerms;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 140,
@@ -69,8 +94,8 @@ class _SignupState extends State<Signup> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            AppTextField(
-              textController: textController,
+            LoginTextField(
+              textController: emailController,
               hint: 'Enter your Email',
               label: 'Email',
             ),
@@ -81,10 +106,20 @@ class _SignupState extends State<Signup> {
               label: 'Password',
             ),
             const Gap(20),
-            PrimaryButton(
-              text: 'Create account',
-              onTap: createAccount,
-            ),
+            isBusy
+                ? const SizedBox(
+                    height: 44,
+                    width: 44,
+                    child: CircularProgressIndicator(
+                      color: Pallete.blueColor,
+                    ),
+                  )
+                : PrimaryButton(
+                    text: 'Create account',
+                    onTap: () {
+                      createAccount(acceptTerms);
+                    },
+                  ),
             const Gap(20),
             const Row(
               children: [

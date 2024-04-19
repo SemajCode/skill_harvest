@@ -27,9 +27,14 @@ class PhoneLogin extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        leading: const Icon(
-          Icons.arrow_back_ios_new,
-          color: Pallete.blackColor,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Pallete.blackColor,
+          ),
         ),
       ),
       body: Column(

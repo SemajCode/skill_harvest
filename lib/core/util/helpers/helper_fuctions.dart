@@ -18,7 +18,10 @@ void showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Pallete.blueColor,
-      content: Text(message),
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+      ),
     ),
   );
 }

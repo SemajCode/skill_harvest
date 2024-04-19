@@ -1,10 +1,13 @@
 class Validator {
   //email validator
-  static String? validateEmail(String email) {
+  static String? validateEmail(String? email) {
     const String emailPattern =
         r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';
 
     final RegExp emailRegex = RegExp(emailPattern);
+    if (email == null) {
+      return 'Please Enter your email';
+    }
     if (email.isEmpty) {
       return 'Please Enter your email';
     }
