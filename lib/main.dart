@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:skillharvest/Theme/pallete.dart';
-import 'package:skillharvest/features/account/screens/account.dart';
-import 'package:skillharvest/features/onboarding/screen/onboarding.dart';
+import 'package:skillharvest/features/home/screens/home.dart';
 import 'package:skillharvest/models/course.dart';
 
 void main() async {
@@ -29,12 +28,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SkillHarvest',
-      theme: Pallete.lightThemeMode,
-      darkTheme: Pallete.darkThemeMode,
-      themeMode: ThemeMode.light,
-      home: const Account(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'SkillHarvest',
+        theme: Pallete.lightThemeMode,
+        darkTheme: Pallete.darkThemeMode,
+        themeMode: ThemeMode.light,
+        home: const Home());
   }
 }

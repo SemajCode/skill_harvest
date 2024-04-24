@@ -27,8 +27,6 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
   void toggleFavorite(course) {
     ref.read(courseProvider.notifier).toggleFavorite(course);
     ref.read(userCourseProvider.notifier).toggleFavorite(course);
-
-    // setState(() {});
   }
 
   void buyCourse() {
@@ -37,7 +35,6 @@ class _CourseActionButtonsState extends ConsumerState<CourseActionButtons> {
     final paidCourse = ref.read(courseProvider)[widget.courseIndex];
 
     ref.read(userCourseProvider.notifier).addCourse(paidCourse);
-    // setState(() {});
   }
 
   void removeCourse(Course course, bool isUserCourse) {

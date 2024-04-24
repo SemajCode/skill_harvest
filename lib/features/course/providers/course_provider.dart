@@ -1,8 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
+
 import 'package:skillharvest/core/util/constants/constant.dart';
-import 'package:skillharvest/models/course.dart';
 import 'package:skillharvest/data/dummy_course_data.dart';
+import 'package:skillharvest/models/course.dart';
 
 final courseBox = Hive.box(HiveConst.courseBox);
 List<Course> courseList = loadCourses();
