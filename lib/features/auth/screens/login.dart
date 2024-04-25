@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -42,7 +43,7 @@ class _LoginState extends ConsumerState<Login> {
       showSnackBar(context, 'PLEASE FILL IN ALL FIELDS');
     }
     if (emailValidator == null && passValidator == null) {
-      await ref.read(loginProvider).login(
+      await ref.read(loginProvider).emailLogin(
             passwordController.text,
             emailController.text,
             context,
@@ -55,6 +56,10 @@ class _LoginState extends ConsumerState<Login> {
         ),
       );
     }
+  }
+
+  Future<void> googleSignIn() async {
+    await ref.read(loginProvider).googleLogin(context);
   }
 
   @override
@@ -133,14 +138,21 @@ class _LoginState extends ConsumerState<Login> {
                 const Gap(30),
                 const OrLoginWith(),
                 const Gap(30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(AppImage.facebookSvg),
-                    const Gap(30),
-                    SvgPicture.asset(AppImage.googleSvg),
-                  ],
-                )
+                isBusy
+                    ? const CircularProgressIndicator(
+                        color: Pallete.blueColor,
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(AppImage.facebookSvg),
+                          const Gap(30),
+                          GestureDetector(
+                            onTap: googleSignIn,
+                            child: SvgPicture.asset(AppImage.googleSvg),
+                          ),
+                        ],
+                      ),
               ],
             ),
           ),

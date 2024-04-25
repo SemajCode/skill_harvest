@@ -13,7 +13,7 @@ class SignupController extends ChangeNotifier {
       String email, String password, BuildContext context) async {
     _isBusy(true);
     await FirebaseAuthMethods(FirebaseAuth.instance)
-        .signiUpWithEmail(context, email, password);
+        .signUpWithEmail(context, email, password);
     _isBusy(false);
   }
 

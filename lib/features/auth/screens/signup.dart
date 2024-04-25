@@ -93,67 +93,69 @@ class _SignupState extends ConsumerState<Signup> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            LoginTextField(
-              textController: emailController,
-              hint: 'Enter your Email',
-              label: 'Email',
-            ),
-            const Gap(20),
-            PasswordTextField(
-              passwordController: passwordController,
-              hint: 'Enter your Password',
-              label: 'Password',
-            ),
-            const Gap(20),
-            isBusy
-                ? const SizedBox(
-                    height: 44,
-                    width: 44,
-                    child: CircularProgressIndicator(
-                      color: Pallete.blueColor,
-                    ),
-                  )
-                : PrimaryButton(
-                    text: 'Create account',
-                    onTap: () {
-                      createAccount(acceptTerms);
-                    },
-                  ),
-            const Gap(20),
-            const Row(
-              children: [
-                SignUpCheckBox(),
-                Text(
-                  'By creating an account you have to\n agree with our terms & conditions.',
-                  style: TextStyle(color: Pallete.greyText),
-                ),
-              ],
-            ),
-            const Gap(20),
-            RichText(
-              text: TextSpan(
-                  text: 'Already have an account? ',
-                  style: const TextStyle(color: Pallete.greyText),
-                  children: [
-                    TextSpan(
-                      text: 'Log in',
-                      style: const TextStyle(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              LoginTextField(
+                textController: emailController,
+                hint: 'Enter your Email',
+                label: 'Email',
+              ),
+              const Gap(20),
+              PasswordTextField(
+                passwordController: passwordController,
+                hint: 'Enter your Password',
+                label: 'Password',
+              ),
+              const Gap(20),
+              isBusy
+                  ? const SizedBox(
+                      height: 44,
+                      width: 44,
+                      child: CircularProgressIndicator(
                         color: Pallete.blueColor,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const Login(),
-                            ),
-                          );
-                        },
+                    )
+                  : PrimaryButton(
+                      text: 'Create account',
+                      onTap: () {
+                        createAccount(acceptTerms);
+                      },
                     ),
-                  ]),
-            )
-          ],
+              const Gap(20),
+              const Row(
+                children: [
+                  SignUpCheckBox(),
+                  Text(
+                    'By creating an account you have to\n agree with our terms & conditions.',
+                    style: TextStyle(color: Pallete.greyText),
+                  ),
+                ],
+              ),
+              const Gap(20),
+              RichText(
+                text: TextSpan(
+                    text: 'Already have an account? ',
+                    style: const TextStyle(color: Pallete.greyText),
+                    children: [
+                      TextSpan(
+                        text: 'Log in',
+                        style: const TextStyle(
+                          color: Pallete.blueColor,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const Login(),
+                              ),
+                            );
+                          },
+                      ),
+                    ]),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -12,7 +12,20 @@
           "package_name": "com.example.skillharvest"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "300224259247-loetr991nm374j9h8fjqjeauq0klne6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skillharvest",
+            "certificate_hash": "681baea7f61c7dbb8a0623a12eb8998fea6ed0d1"
+          }
+        },
+        {
+          "client_id": "300224259247-hsp64r9c5gve60070nftemnin6qqk4oa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAMEll6Py9aOv2aD_IcoJkd0lro2zru2cA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300224259247-hsp64r9c5gve60070nftemnin6qqk4oa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "300224259247-52qgq1anb2k2b9a1o0fhi92hpuj1vjkf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.skillharvest"
+              }
+            }
+          ]
         }
       }
     }

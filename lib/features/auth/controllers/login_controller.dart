@@ -8,7 +8,7 @@ final LoginController _loginController = LoginController();
 class LoginController extends ChangeNotifier {
   bool isBusy = false;
 
-  Future<void> login(
+  Future<void> emailLogin(
       String password, String email, BuildContext context) async {
     _isBusy(true);
     await FirebaseAuthMethods(FirebaseAuth.instance).signInWithEmail(
@@ -17,6 +17,12 @@ class LoginController extends ChangeNotifier {
       password,
     );
 
+    _isBusy(false);
+  }
+
+  Future<void> googleLogin(BuildContext context) async {
+    _isBusy(true);
+    await FirebaseAuthMethods(FirebaseAuth.instance).signInWithGoogle(context);
     _isBusy(false);
   }
 

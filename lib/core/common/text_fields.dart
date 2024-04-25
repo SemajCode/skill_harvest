@@ -116,7 +116,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         return Validator.validatePassword(value);
       },
       controller: widget.passwordController,
-      keyboardType: TextInputType.number,
       obscureText: toggled,
       decoration: InputDecoration(
         suffixIcon: IconButton(
