@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skillharvest/core/services/auth/firebase_auth_methods.dart';
 
 final SignupController _signupController = SignupController();
 
@@ -7,9 +9,11 @@ class SignupController extends ChangeNotifier {
   bool isBusy = false;
   bool acceptTerms = false;
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(
+      String email, String password, BuildContext context) async {
     _isBusy(true);
-    await Future.delayed(const Duration(milliseconds: 900));
+    await FirebaseAuthMethods(FirebaseAuth.instance)
+        .signiUpWithEmail(context, email, password);
     _isBusy(false);
   }
 

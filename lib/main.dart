@@ -1,13 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/home/screens/home.dart';
+import 'package:skillharvest/firebase_options.dart';
 import 'package:skillharvest/models/course.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final document = await path_provider.getApplicationDocumentsDirectory();
   await Hive.initFlutter(document.path);
   Hive.registerAdapter(CourseAdapter());
@@ -28,11 +31,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'SkillHarvest',
-        theme: Pallete.lightThemeMode,
-        darkTheme: Pallete.darkThemeMode,
-        themeMode: ThemeMode.light,
-        home: const Home());
+      debugShowCheckedModeBanner: false,
+      title: 'SkillHarvest',
+      theme: Pallete.lightThemeMode,
+      darkTheme: Pallete.darkThemeMode,
+      themeMode: ThemeMode.light,
+      home: const Home(),
+    );
   }
 }

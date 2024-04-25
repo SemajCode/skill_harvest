@@ -42,9 +42,11 @@ class _LoginState extends ConsumerState<Login> {
       showSnackBar(context, 'PLEASE FILL IN ALL FIELDS');
     }
     if (emailValidator == null && passValidator == null) {
-      await ref
-          .read(loginProvider)
-          .login(passwordController.text, emailController.text);
+      await ref.read(loginProvider).login(
+            passwordController.text,
+            emailController.text,
+            context,
+          );
 
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(

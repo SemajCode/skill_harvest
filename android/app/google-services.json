@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "300224259247",
+    "project_id": "skill-harvest-105d3",
+    "storage_bucket": "skill-harvest-105d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300224259247:android:078a3e16d5f1fa6afce05a",
+        "android_client_info": {
+          "package_name": "com.example.skillharvest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMEll6Py9aOv2aD_IcoJkd0lro2zru2cA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

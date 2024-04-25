@@ -39,12 +39,13 @@ class _SignupState extends ConsumerState<Signup> {
     }
     if (emailValidator == null && passValidator == null) {
       if (acceptTerms == false) {
-        // ignore: use_build_context_synchronously
         showSnackBar(context, 'PLEASE AGREE TO TERMS TO PROCEED');
       } else {
-        await ref
-            .read(signUpProvider)
-            .signUp(emailController.text, passwordController.text);
+        await ref.read(signUpProvider).signUp(
+              emailController.text,
+              passwordController.text,
+              context,
+            );
 
         if (context.mounted) {
           // ignore: use_build_context_synchronously
