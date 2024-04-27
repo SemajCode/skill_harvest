@@ -8,6 +8,8 @@ class FirebaseAuthMethods {
 
   FirebaseAuthMethods(this._auth);
 
+  Stream<User?> get authState => _auth.authStateChanges();
+
   Future<void> signUpWithEmail(
     BuildContext context,
     String email,
@@ -20,7 +22,7 @@ class FirebaseAuthMethods {
       );
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.message!);
+        showSnackBar(context, e.message ?? 'Authentication failed');
       }
     }
   }
@@ -33,7 +35,7 @@ class FirebaseAuthMethods {
       }
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.message!);
+        showSnackBar(context, e.message ?? 'Email verification failed');
       }
     }
   }
@@ -50,7 +52,7 @@ class FirebaseAuthMethods {
       );
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.message!);
+        showSnackBar(context, e.message ?? 'Authentication failed');
       }
     }
   }
@@ -74,7 +76,7 @@ class FirebaseAuthMethods {
       }
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
-        showSnackBar(context, e.message!);
+        showSnackBar(context, e.message ?? 'Authentication failed');
       }
     }
   }

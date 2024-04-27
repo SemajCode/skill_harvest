@@ -5,13 +5,15 @@ import 'package:skillharvest/Theme/pallete.dart';
 import 'package:skillharvest/features/onboarding/screen/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, required this.isWaiting});
+  final bool isWaiting;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isLoading = false;
   @override
   void initState() {
     loadDelay();
@@ -20,11 +22,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void loadDelay() {
     Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const Onboarding(),
-        ),
-      );
+      if (widget.isWaiting) {
+        return;
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const Onboarding(),
+          ),
+        );
+      }
+      if (widget.isWaiting == true) {
+        isLoading = true;
+      }
     });
   }
 
@@ -55,6 +64,11 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const Gap(20),
+            isLoading
+                ? const CircularProgressIndicator(
+                    color: Pallete.blueColor,
+                  )
+                : const SizedBox()
           ],
         ),
       ),

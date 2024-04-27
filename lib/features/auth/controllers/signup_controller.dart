@@ -1,19 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skillharvest/core/services/auth/firebase_auth_methods.dart';
-
-final SignupController _signupController = SignupController();
+import 'package:skillharvest/features/auth/provider/auth_provider.dart';
 
 class SignupController extends ChangeNotifier {
   bool isBusy = false;
   bool acceptTerms = false;
+  final Ref ref;
+
+  SignupController({required this.ref});
 
   Future<void> signUp(
       String email, String password, BuildContext context) async {
     _isBusy(true);
-    await FirebaseAuthMethods(FirebaseAuth.instance)
-        .signUpWithEmail(context, email, password);
+    await ref.read(authProvider).signUpWithEmail(context, email, password);
     _isBusy(false);
   }
 
@@ -28,4 +27,5 @@ class SignupController extends ChangeNotifier {
   }
 }
 
-final signUpProvider = ChangeNotifierProvider((ref) => _signupController);
+final signUpProvider =
+    ChangeNotifierProvider((ref) => SignupController(ref: ref));

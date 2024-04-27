@@ -1,28 +1,30 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skillharvest/core/services/auth/firebase_auth_methods.dart';
+import 'package:skillharvest/features/auth/provider/auth_provider.dart';
 
-final LoginController _loginController = LoginController();
+// final LoginController _loginController = LoginController();
 
 class LoginController extends ChangeNotifier {
   bool isBusy = false;
+  final Ref ref;
+
+  LoginController({required this.ref});
 
   Future<void> emailLogin(
       String password, String email, BuildContext context) async {
     _isBusy(true);
-    await FirebaseAuthMethods(FirebaseAuth.instance).signInWithEmail(
-      context,
-      email,
-      password,
-    );
+    await ref.read(authProvider).signInWithEmail(
+          context,
+          email,
+          password,
+        );
 
     _isBusy(false);
   }
 
   Future<void> googleLogin(BuildContext context) async {
     _isBusy(true);
-    await FirebaseAuthMethods(FirebaseAuth.instance).signInWithGoogle(context);
+    await ref.read(authProvider).signInWithGoogle(context);
     _isBusy(false);
   }
 
@@ -33,5 +35,5 @@ class LoginController extends ChangeNotifier {
 }
 
 final loginProvider = ChangeNotifierProvider((ref) {
-  return _loginController;
+  return LoginController(ref: ref);
 });
