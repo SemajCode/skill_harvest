@@ -23,32 +23,28 @@ class Profile extends ConsumerStatefulWidget {
 
 class _ProfileState extends ConsumerState<Profile> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _nickNameController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   File? _pickedImageFile;
 
   bool _validate() {
     final nameValidator = Validator.validateText(_nameController.text, null);
-    final nickNameValidator =
-        Validator.validateText(_nickNameController.text, null);
+
     final phoneValidator =
         Validator.validatePhone(_phoneNumberController.text, null);
-    if (nameValidator == null &&
-        nickNameValidator == null &&
-        phoneValidator == null) {
+    if (nameValidator == null && phoneValidator == null) {
       return true;
     }
     return false;
   }
 
   void _submit() {
+    if (_pickedImageFile == null && widget.isNewUser) {
+      showSnackBar(context, 'Please select an image');
+      return;
+    }
     if (_validate()) {
-      ref.read(signUpProvider.notifier).addProfile(
-            _pickedImageFile,
-            _nameController.text,
-            _nickNameController.text,
-            _phoneNumberController.text,
-          );
+      ref.read(signUpProvider.notifier).addProfile(_pickedImageFile,
+          _nameController.text, _phoneNumberController.text, context);
       return;
     }
     showSnackBar(context, 'PLEASE FILL IN VALID DETAILS');
@@ -70,6 +66,7 @@ class _ProfileState extends ConsumerState<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final isBusy = ref.watch(signUpProvider).isBusy;
     return Scaffold(
       backgroundColor: Pallete.blueColor,
       appBar: AppBar(
@@ -109,22 +106,24 @@ class _ProfileState extends ConsumerState<Profile> {
                 textController: _nameController,
               ),
               const Gap(12),
-              AppTextField(
-                label: 'Nickname',
-                hint: 'Enter Nickname',
-                textController: _nickNameController,
-              ),
-              const Gap(12),
               PhoneTextField(
                 label: 'Phone Number',
                 hint: 'Enter Number',
                 textController: _phoneNumberController,
               ),
               const Spacer(),
-              PrimaryButton(
-                text: 'Continue',
-                onTap: _submit,
-              ),
+              isBusy
+                  ? const SizedBox(
+                      height: 44,
+                      width: 44,
+                      child: CircularProgressIndicator(
+                        color: Pallete.blueColor,
+                      ),
+                    )
+                  : PrimaryButton(
+                      text: 'Continue',
+                      onTap: _submit,
+                    ),
             ],
           ),
         ),

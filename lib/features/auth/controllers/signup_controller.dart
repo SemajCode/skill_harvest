@@ -28,20 +28,18 @@ class SignupController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addProfile(
-    File? image,
-    String displayName,
-    String nickName,
-    String phoneNumber,
-  ) async {
+  Future<void> addProfile(File? image, String displayName, String phoneNumber,
+      BuildContext context) async {
+    _isBusy(true);
     final user = ref.read(authProvider).user;
     await ref.read(authProvider).addProfile(
-          image,
-          displayName,
-          phoneNumber,
-          nickName,
-          user,
+          context: context,
+          image: image,
+          displayName: displayName,
+          phoneNumber: phoneNumber,
+          user: user,
         );
+    _isBusy(false);
   }
 }
 

@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
@@ -43,14 +45,34 @@ class FirebaseAuthMethods {
     }
   }
 
-  Future<void> addProfile(
-    File? image,
-    String displayName,
-    String phoneNumber,
-    String nickName,
-    User? user,
-  ) async {
-    //
+  Future<void> addProfile({
+    required BuildContext context,
+    required File? image,
+    required String displayName,
+    required String phoneNumber,
+    required User? user,
+  }) async {
+    try {
+      if (image != null) {
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('user_images')
+            .child('${user!.uid}.jpg');
+        await storageRef.putFile(image);
+        final imageUrl = await storageRef.getDownloadURL();
+
+        FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'username': user.displayName,
+          'email': user.email,
+          'image_url': imageUrl,
+          'phone_number': phoneNumber,
+        });
+      }
+    } on FirebaseException catch (e) {
+      if (context.mounted) {
+        showSnackBar(context, e.message!);
+      }
+    }
   }
 
   Future<void> signInWithEmail(
