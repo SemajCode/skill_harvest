@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,6 +11,7 @@ class FirebaseAuthMethods {
   FirebaseAuthMethods(this._auth);
 
   Stream<User?> get authState => _auth.authStateChanges();
+  User? get user => _auth.currentUser!;
 
   Future<void> signUpWithEmail(
     BuildContext context,
@@ -38,6 +41,16 @@ class FirebaseAuthMethods {
         showSnackBar(context, e.message ?? 'Email verification failed');
       }
     }
+  }
+
+  Future<void> addProfile(
+    File? image,
+    String displayName,
+    String phoneNumber,
+    String nickName,
+    User? user,
+  ) async {
+    //
   }
 
   Future<void> signInWithEmail(

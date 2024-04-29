@@ -17,7 +17,11 @@ class AppTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: textController,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.name,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        return Validator.validateText(value, label);
+      },
       decoration: InputDecoration(
         hintText: hint,
         label: Text(
@@ -137,6 +141,52 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         hintText: widget.hint,
         label: Text(
           widget.label,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(width: 1.5, color: Pallete.greyText[350]!),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1.5, color: Colors.red),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1.5, color: Pallete.blueColor),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(width: 1.5, color: Pallete.greyText),
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+    );
+  }
+}
+
+class PhoneTextField extends StatelessWidget {
+  const PhoneTextField({
+    super.key,
+    required this.label,
+    required this.hint,
+    required this.textController,
+  });
+  final String label;
+  final String hint;
+  final TextEditingController textController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        return Validator.validatePhone(value, label);
+      },
+      controller: textController,
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(
+        hintText: hint,
+        label: Text(
+          label,
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(width: 1.5, color: Pallete.greyText[350]!),

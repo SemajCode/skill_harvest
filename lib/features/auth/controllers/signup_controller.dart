@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skillharvest/features/auth/provider/auth_provider.dart';
@@ -24,6 +26,22 @@ class SignupController extends ChangeNotifier {
   _isBusy(bool isBusy) {
     this.isBusy = isBusy;
     notifyListeners();
+  }
+
+  Future<void> addProfile(
+    File? image,
+    String displayName,
+    String nickName,
+    String phoneNumber,
+  ) async {
+    final user = ref.read(authProvider).user;
+    await ref.read(authProvider).addProfile(
+          image,
+          displayName,
+          phoneNumber,
+          nickName,
+          user,
+        );
   }
 }
 

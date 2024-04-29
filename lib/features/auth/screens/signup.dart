@@ -8,9 +8,9 @@ import 'package:skillharvest/core/common/signup_checkbox.dart';
 import 'package:skillharvest/core/common/text_fields.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/core/util/validators/validator.dart';
+import 'package:skillharvest/features/account/screens/profile.dart';
 import 'package:skillharvest/features/auth/controllers/signup_controller.dart';
 import 'package:skillharvest/features/auth/screens/login.dart';
-import 'package:skillharvest/features/home/screens/home.dart';
 
 class Signup extends ConsumerStatefulWidget {
   const Signup({super.key});
@@ -51,7 +51,9 @@ class _SignupState extends ConsumerState<Signup> {
           // ignore: use_build_context_synchronously
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const Home(),
+              builder: (context) => const Profile(
+                isNewUser: true,
+              ),
             ),
           );
         }
