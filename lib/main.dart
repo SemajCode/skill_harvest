@@ -44,7 +44,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider).authState;
+    final authState = ref.watch(firebaseServiceProvider).authState;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SkillHarvest',
@@ -62,7 +62,7 @@ class MyApp extends ConsumerWidget {
             if (snapshot.hasData) {
               return const Home();
             } else {
-              return const Home();
+              return const Onboarding();
             }
           }),
     );

@@ -13,7 +13,7 @@ class LoginController extends ChangeNotifier {
   Future<void> emailLogin(
       String password, String email, BuildContext context) async {
     _isBusy(true);
-    await ref.read(authProvider).signInWithEmail(
+    await ref.read(firebaseServiceProvider).signInWithEmail(
           context,
           email,
           password,
@@ -24,7 +24,7 @@ class LoginController extends ChangeNotifier {
 
   Future<void> googleLogin(BuildContext context) async {
     _isBusy(true);
-    await ref.read(authProvider).signInWithGoogle(context);
+    await ref.read(firebaseServiceProvider).signInWithGoogle(context);
     _isBusy(false);
   }
 

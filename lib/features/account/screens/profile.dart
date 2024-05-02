@@ -52,6 +52,7 @@ class _ProfileState extends ConsumerState<Profile> {
           );
       if (context.mounted) {
         Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (context) => const Home(),
@@ -77,6 +78,13 @@ class _ProfileState extends ConsumerState<Profile> {
     setState(() {
       _pickedImageFile = File(pickedImage.path);
     });
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneNumberController.dispose();
+    super.dispose();
   }
 
   @override

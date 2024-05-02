@@ -6,11 +6,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
+import 'package:skillharvest/models/user.dart';
 
-class FirebaseAuthMethods {
+class FirebaseMethods {
   final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
+  final FirebaseStorage _firebaseStorage;
 
-  FirebaseAuthMethods(this._auth);
+  FirebaseMethods(this._auth, this._firestore, this._firebaseStorage);
 
   Stream<User?> get authState => _auth.authStateChanges();
   User? get user => _auth.currentUser!;
@@ -41,36 +44,6 @@ class FirebaseAuthMethods {
     } on FirebaseAuthException catch (e) {
       if (context.mounted) {
         showSnackBar(context, e.message ?? 'Email verification failed');
-      }
-    }
-  }
-
-  Future<void> addProfile({
-    required BuildContext context,
-    required File? image,
-    required String displayName,
-    required String phoneNumber,
-    required User? user,
-  }) async {
-    try {
-      if (image != null) {
-        final storageRef = FirebaseStorage.instance
-            .ref()
-            .child('user_images')
-            .child('${user!.uid}.jpg');
-        await storageRef.putFile(image);
-        final imageUrl = await storageRef.getDownloadURL();
-
-        FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'username': displayName,
-          'email': user.email,
-          'image_url': imageUrl,
-          'phone_number': phoneNumber,
-        });
-      }
-    } on FirebaseException catch (e) {
-      if (context.mounted) {
-        showSnackBar(context, e.message!);
       }
     }
   }
@@ -122,5 +95,49 @@ class FirebaseAuthMethods {
     } on FirebaseAuthException catch (e) {
       debugPrint(e.message!);
     }
+  }
+
+  Future<void> addProfile({
+    required BuildContext context,
+    required File? image,
+    required String displayName,
+    required String phoneNumber,
+    required User? user,
+  }) async {
+    try {
+      if (image != null) {
+        final storageRef = _firebaseStorage
+            .ref()
+            .child('user_images')
+            .child('${user!.uid}.jpg');
+        await storageRef.putFile(image);
+        final imageUrl = await storageRef.getDownloadURL();
+
+        _firestore.collection('users').doc(user.uid).set({
+          'username': displayName,
+          'email': user.email,
+          'image_url': imageUrl,
+          'phone_number': phoneNumber,
+        });
+      }
+    } on FirebaseException catch (e) {
+      if (context.mounted) {
+        showSnackBar(context, e.message!);
+      }
+    }
+  }
+
+  Future<UserModel> getUserProfile() async {
+    final user = _auth.currentUser!;
+
+    final userData = await _firestore.collection('users').doc(user.uid).get();
+
+    final UserModel userModel = UserModel(
+      displayName: userData.data()!['username'],
+      imagePath: userData.data()!['image_url'],
+      phoneNumber: userData.data()!['phone_number'],
+      userCourses: [],
+    );
+    return userModel;
   }
 }

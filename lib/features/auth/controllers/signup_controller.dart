@@ -14,7 +14,9 @@ class SignupController extends ChangeNotifier {
   Future<void> signUp(
       String email, String password, BuildContext context) async {
     _isBusy(true);
-    await ref.read(authProvider).signUpWithEmail(context, email, password);
+    await ref
+        .read(firebaseServiceProvider)
+        .signUpWithEmail(context, email, password);
     _isBusy(false);
   }
 
@@ -35,8 +37,8 @@ class SignupController extends ChangeNotifier {
     required BuildContext context,
   }) async {
     _isBusy(true);
-    final user = ref.read(authProvider).user;
-    await ref.read(authProvider).addProfile(
+    final user = ref.read(firebaseServiceProvider).user;
+    await ref.read(firebaseServiceProvider).addProfile(
           context: context,
           image: image,
           displayName: displayName,
