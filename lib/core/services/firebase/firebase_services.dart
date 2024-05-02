@@ -62,7 +62,7 @@ class FirebaseAuthMethods {
         final imageUrl = await storageRef.getDownloadURL();
 
         FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'username': user.displayName,
+          'username': displayName,
           'email': user.email,
           'image_url': imageUrl,
           'phone_number': phoneNumber,
@@ -113,6 +113,14 @@ class FirebaseAuthMethods {
       if (context.mounted) {
         showSnackBar(context, e.message ?? 'Authentication failed');
       }
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.message!);
     }
   }
 }

@@ -11,6 +11,7 @@ import 'package:skillharvest/core/util/helpers/helper_fuctions.dart';
 import 'package:skillharvest/core/util/validators/validator.dart';
 import 'package:skillharvest/features/account/widgets/user_image_picker.dart';
 import 'package:skillharvest/features/auth/controllers/signup_controller.dart';
+import 'package:skillharvest/features/home/screens/home.dart';
 
 class Profile extends ConsumerStatefulWidget {
   const Profile({super.key, required this.isNewUser});
@@ -37,17 +38,31 @@ class _ProfileState extends ConsumerState<Profile> {
     return false;
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     if (_pickedImageFile == null && widget.isNewUser) {
       showSnackBar(context, 'Please select an image');
       return;
     }
     if (_validate()) {
-      ref.read(signUpProvider.notifier).addProfile(_pickedImageFile,
-          _nameController.text, _phoneNumberController.text, context);
+      await ref.read(signUpProvider.notifier).addProfile(
+            image: _pickedImageFile,
+            displayName: _nameController.text,
+            phoneNumber: _phoneNumberController.text,
+            context: context,
+          );
+      if (context.mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Home(),
+          ),
+        );
+      }
       return;
     }
-    showSnackBar(context, 'PLEASE FILL IN VALID DETAILS');
+    if (context.mounted) {
+      showSnackBar(context, 'PLEASE FILL IN VALID DETAILS');
+    }
   }
 
   void _pickImage() async {
